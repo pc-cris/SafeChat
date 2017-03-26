@@ -7,14 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B2E44931E63468E00920514 /* UserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2E44911E63468E00920514 /* UserListViewController.m */; };
+		6B2E44941E63468E00920514 /* UserListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B2E44921E63468E00920514 /* UserListViewController.xib */; };
+		6B2E44981E6375EE00920514 /* UserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2E44961E6375EE00920514 /* UserListTableViewCell.m */; };
+		6B2E44991E6375EE00920514 /* UserListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B2E44971E6375EE00920514 /* UserListTableViewCell.xib */; };
+		6BF2EAF21E2C20C300053FE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BF2EAF11E2C20C300053FE7 /* GoogleService-Info.plist */; };
+		6BF2EAF31E2C20C300053FE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BF2EAF11E2C20C300053FE7 /* GoogleService-Info.plist */; };
 		6BFB93731E1EE7E200737738 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFB93721E1EE7E200737738 /* main.m */; };
 		6BFB93761E1EE7E200737738 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFB93751E1EE7E200737738 /* AppDelegate.m */; };
-		6BFB93791E1EE7E200737738 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFB93781E1EE7E200737738 /* ViewController.m */; };
 		6BFB937C1E1EE7E200737738 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BFB937A1E1EE7E200737738 /* Main.storyboard */; };
 		6BFB937F1E1EE7E200737738 /* SafeChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6BFB937D1E1EE7E200737738 /* SafeChat.xcdatamodeld */; };
 		6BFB93811E1EE7E200737738 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BFB93801E1EE7E200737738 /* Assets.xcassets */; };
 		6BFB93841E1EE7E200737738 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BFB93821E1EE7E200737738 /* LaunchScreen.storyboard */; };
 		6BFB938F1E1EE7E200737738 /* SafeChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFB938E1E1EE7E200737738 /* SafeChatTests.m */; };
+		6BFB939D1E1EE92400737738 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BFB939C1E1EE92400737738 /* AVFoundation.framework */; };
+		6BFB939F1E1EE93000737738 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BFB939E1E1EE93000737738 /* CoreData.framework */; };
+		6BFB93A11E1EE94A00737738 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BFB93A01E1EE94A00737738 /* AVKit.framework */; };
+		6BFB93A51E1EEBF700737738 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BFB93A41E1EEBF700737738 /* libicucore.tbd */; };
+		6BFB93A71E1EEC7300737738 /* SendBirdSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BFB93A61E1EEC7300737738 /* SendBirdSDK.framework */; };
+		6BFB93A91E1EEE5000737738 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BFB93A81E1EEE5000737738 /* Media.xcassets */; };
+		6BFB93AD1E1EF90A00737738 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFB93AC1E1EF90A00737738 /* SignInViewController.m */; };
+		90E1055E452F6C2822544702 /* libPods-SafeChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE897929776621BDFEC52BD2 /* libPods-SafeChat.a */; };
+		F6F35BFFECCD659C70FE8B77 /* libPods-SafeChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E563111E32768E5083C63E30 /* libPods-SafeChatTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,12 +42,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C65EEF5FB44C36E051862BF /* Pods-SafeChatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeChatTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SafeChatTests/Pods-SafeChatTests.release.xcconfig"; sourceTree = "<group>"; };
+		63DBDC5209676DA9B63108C7 /* Pods-SafeChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SafeChat/Pods-SafeChat.debug.xcconfig"; sourceTree = "<group>"; };
+		66D35D3AAEB8F0EB3A562577 /* Pods-SafeChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-SafeChat/Pods-SafeChat.release.xcconfig"; sourceTree = "<group>"; };
+		6B2E44901E63468E00920514 /* UserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListViewController.h; sourceTree = "<group>"; };
+		6B2E44911E63468E00920514 /* UserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListViewController.m; sourceTree = "<group>"; };
+		6B2E44921E63468E00920514 /* UserListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserListViewController.xib; sourceTree = "<group>"; };
+		6B2E44951E6375EE00920514 /* UserListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListTableViewCell.h; sourceTree = "<group>"; };
+		6B2E44961E6375EE00920514 /* UserListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListTableViewCell.m; sourceTree = "<group>"; };
+		6B2E44971E6375EE00920514 /* UserListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserListTableViewCell.xib; sourceTree = "<group>"; };
+		6BF2EAF11E2C20C300053FE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6BFB936E1E1EE7E200737738 /* SafeChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BFB93721E1EE7E200737738 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6BFB93741E1EE7E200737738 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6BFB93751E1EE7E200737738 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6BFB93771E1EE7E200737738 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		6BFB93781E1EE7E200737738 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		6BFB937B1E1EE7E200737738 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6BFB937E1E1EE7E200737738 /* SafeChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SafeChat.xcdatamodel; sourceTree = "<group>"; };
 		6BFB93801E1EE7E200737738 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -42,6 +64,17 @@
 		6BFB938A1E1EE7E200737738 /* SafeChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafeChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BFB938E1E1EE7E200737738 /* SafeChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafeChatTests.m; sourceTree = "<group>"; };
 		6BFB93901E1EE7E200737738 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6BFB939C1E1EE92400737738 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		6BFB939E1E1EE93000737738 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6BFB93A01E1EE94A00737738 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		6BFB93A41E1EEBF700737738 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		6BFB93A61E1EEC7300737738 /* SendBirdSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SendBirdSDK.framework; sourceTree = "<group>"; };
+		6BFB93A81E1EEE5000737738 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		6BFB93AB1E1EF90A00737738 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		6BFB93AC1E1EF90A00737738 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		CE897929776621BDFEC52BD2 /* libPods-SafeChat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SafeChat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E563111E32768E5083C63E30 /* libPods-SafeChatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SafeChatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA546F4BF26DD58B9896271C /* Pods-SafeChatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeChatTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SafeChatTests/Pods-SafeChatTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +82,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BFB93A71E1EEC7300737738 /* SendBirdSDK.framework in Frameworks */,
+				6BFB93A51E1EEBF700737738 /* libicucore.tbd in Frameworks */,
+				6BFB93A11E1EE94A00737738 /* AVKit.framework in Frameworks */,
+				6BFB939F1E1EE93000737738 /* CoreData.framework in Frameworks */,
+				6BFB939D1E1EE92400737738 /* AVFoundation.framework in Frameworks */,
+				90E1055E452F6C2822544702 /* libPods-SafeChat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,18 +95,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6F35BFFECCD659C70FE8B77 /* libPods-SafeChatTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06BAFA4A8F71A06B8C8F9A47 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				63DBDC5209676DA9B63108C7 /* Pods-SafeChat.debug.xcconfig */,
+				66D35D3AAEB8F0EB3A562577 /* Pods-SafeChat.release.xcconfig */,
+				FA546F4BF26DD58B9896271C /* Pods-SafeChatTests.debug.xcconfig */,
+				3C65EEF5FB44C36E051862BF /* Pods-SafeChatTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6BFB93651E1EE7E200737738 = {
 			isa = PBXGroup;
 			children = (
+				6BF2EAF11E2C20C300053FE7 /* GoogleService-Info.plist */,
+				6BFB93A81E1EEE5000737738 /* Media.xcassets */,
+				6BFB93991E1EE80400737738 /* Frameworks */,
 				6BFB93701E1EE7E200737738 /* SafeChat */,
 				6BFB938D1E1EE7E200737738 /* SafeChatTests */,
 				6BFB936F1E1EE7E200737738 /* Products */,
+				06BAFA4A8F71A06B8C8F9A47 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,14 +140,20 @@
 			children = (
 				6BFB93741E1EE7E200737738 /* AppDelegate.h */,
 				6BFB93751E1EE7E200737738 /* AppDelegate.m */,
-				6BFB93771E1EE7E200737738 /* ViewController.h */,
-				6BFB93781E1EE7E200737738 /* ViewController.m */,
 				6BFB937A1E1EE7E200737738 /* Main.storyboard */,
-				6BFB93801E1EE7E200737738 /* Assets.xcassets */,
+				6BFB93AB1E1EF90A00737738 /* SignInViewController.h */,
+				6BFB93AC1E1EF90A00737738 /* SignInViewController.m */,
 				6BFB93821E1EE7E200737738 /* LaunchScreen.storyboard */,
-				6BFB93851E1EE7E200737738 /* Info.plist */,
-				6BFB937D1E1EE7E200737738 /* SafeChat.xcdatamodeld */,
 				6BFB93711E1EE7E200737738 /* Supporting Files */,
+				6BFB93801E1EE7E200737738 /* Assets.xcassets */,
+				6BFB937D1E1EE7E200737738 /* SafeChat.xcdatamodeld */,
+				6BFB93851E1EE7E200737738 /* Info.plist */,
+				6B2E44901E63468E00920514 /* UserListViewController.h */,
+				6B2E44911E63468E00920514 /* UserListViewController.m */,
+				6B2E44921E63468E00920514 /* UserListViewController.xib */,
+				6B2E44951E6375EE00920514 /* UserListTableViewCell.h */,
+				6B2E44961E6375EE00920514 /* UserListTableViewCell.m */,
+				6B2E44971E6375EE00920514 /* UserListTableViewCell.xib */,
 			);
 			path = SafeChat;
 			sourceTree = "<group>";
@@ -114,6 +175,20 @@
 			path = SafeChatTests;
 			sourceTree = "<group>";
 		};
+		6BFB93991E1EE80400737738 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6BFB93A41E1EEBF700737738 /* libicucore.tbd */,
+				6BFB93A61E1EEC7300737738 /* SendBirdSDK.framework */,
+				6BFB93A01E1EE94A00737738 /* AVKit.framework */,
+				6BFB939E1E1EE93000737738 /* CoreData.framework */,
+				6BFB939C1E1EE92400737738 /* AVFoundation.framework */,
+				CE897929776621BDFEC52BD2 /* libPods-SafeChat.a */,
+				E563111E32768E5083C63E30 /* libPods-SafeChatTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -121,9 +196,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6BFB93931E1EE7E200737738 /* Build configuration list for PBXNativeTarget "SafeChat" */;
 			buildPhases = (
+				336D5C057A9221A2408AD235 /* [CP] Check Pods Manifest.lock */,
 				6BFB936A1E1EE7E200737738 /* Sources */,
 				6BFB936B1E1EE7E200737738 /* Frameworks */,
 				6BFB936C1E1EE7E200737738 /* Resources */,
+				904A3051A1F0D13514EB3476 /* [CP] Embed Pods Frameworks */,
+				902D0EBC27F13D8F6541CC32 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -138,9 +216,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6BFB93961E1EE7E200737738 /* Build configuration list for PBXNativeTarget "SafeChatTests" */;
 			buildPhases = (
+				884041AF4F8436F9FB260129 /* [CP] Check Pods Manifest.lock */,
 				6BFB93861E1EE7E200737738 /* Sources */,
 				6BFB93871E1EE7E200737738 /* Frameworks */,
 				6BFB93881E1EE7E200737738 /* Resources */,
+				293831769D9B791D5071E828 /* [CP] Embed Pods Frameworks */,
+				018421C51758EF467B57C038 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -197,7 +278,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BFB93841E1EE7E200737738 /* LaunchScreen.storyboard in Resources */,
+				6B2E44991E6375EE00920514 /* UserListTableViewCell.xib in Resources */,
+				6B2E44941E63468E00920514 /* UserListViewController.xib in Resources */,
 				6BFB93811E1EE7E200737738 /* Assets.xcassets in Resources */,
+				6BF2EAF21E2C20C300053FE7 /* GoogleService-Info.plist in Resources */,
+				6BFB93A91E1EEE5000737738 /* Media.xcassets in Resources */,
 				6BFB937C1E1EE7E200737738 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,19 +291,115 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BF2EAF31E2C20C300053FE7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		018421C51758EF467B57C038 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SafeChatTests/Pods-SafeChatTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		293831769D9B791D5071E828 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SafeChatTests/Pods-SafeChatTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		336D5C057A9221A2408AD235 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		884041AF4F8436F9FB260129 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		902D0EBC27F13D8F6541CC32 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SafeChat/Pods-SafeChat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		904A3051A1F0D13514EB3476 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SafeChat/Pods-SafeChat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6BFB936A1E1EE7E200737738 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BFB93AD1E1EF90A00737738 /* SignInViewController.m in Sources */,
+				6B2E44931E63468E00920514 /* UserListViewController.m in Sources */,
 				6BFB937F1E1EE7E200737738 /* SafeChat.xcdatamodeld in Sources */,
-				6BFB93791E1EE7E200737738 /* ViewController.m in Sources */,
 				6BFB93761E1EE7E200737738 /* AppDelegate.m in Sources */,
+				6B2E44981E6375EE00920514 /* UserListTableViewCell.m in Sources */,
 				6BFB93731E1EE7E200737738 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,9 +534,15 @@
 		};
 		6BFB93941E1EE7E200737738 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63DBDC5209676DA9B63108C7 /* Pods-SafeChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SafeChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.PC.SafeChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -364,9 +551,15 @@
 		};
 		6BFB93951E1EE7E200737738 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66D35D3AAEB8F0EB3A562577 /* Pods-SafeChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SafeChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.PC.SafeChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -375,6 +568,7 @@
 		};
 		6BFB93971E1EE7E200737738 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA546F4BF26DD58B9896271C /* Pods-SafeChatTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = SafeChatTests/Info.plist;
@@ -387,6 +581,7 @@
 		};
 		6BFB93981E1EE7E200737738 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C65EEF5FB44C36E051862BF /* Pods-SafeChatTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = SafeChatTests/Info.plist;
@@ -416,6 +611,7 @@
 				6BFB93951E1EE7E200737738 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6BFB93961E1EE7E200737738 /* Build configuration list for PBXNativeTarget "SafeChatTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +620,7 @@
 				6BFB93981E1EE7E200737738 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

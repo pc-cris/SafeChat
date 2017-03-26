@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import <SendBirdSDK/SendBirdSDK.h>
+#import <AVKit/AVKit.h>
+#import <AVFoundation/AVFoundation.h>
+@import Firebase;
 
 @interface AppDelegate ()
 
@@ -16,7 +20,25 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    [SBDMain initWithApplicationId:@"501B61B5-D7FA-4E33-BE3E-6D5F58C98367"];
+    [SBDMain setLogLevel:SBDLogLevelDebug];
+    [FIRApp configure];
+    
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    if (audioSession != nil) {
+        NSError *error = nil;
+        [audioSession setCategory:AVAudioSessionCategoryPlayback error:&error];
+        
+        if (error != nil) {
+            NSLog(@"Set Audio Session error: %@", error);
+        }
+    }
+
     return YES;
 }
 
