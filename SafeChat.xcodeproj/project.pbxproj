@@ -11,6 +11,7 @@
 		6B2E44941E63468E00920514 /* UserListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B2E44921E63468E00920514 /* UserListViewController.xib */; };
 		6B2E44981E6375EE00920514 /* UserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2E44961E6375EE00920514 /* UserListTableViewCell.m */; };
 		6B2E44991E6375EE00920514 /* UserListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B2E44971E6375EE00920514 /* UserListTableViewCell.xib */; };
+		6B46D5071E8849BE00387C85 /* README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6B46D5061E8849BE00387C85 /* README.rtf */; };
 		6BF2EAF21E2C20C300053FE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BF2EAF11E2C20C300053FE7 /* GoogleService-Info.plist */; };
 		6BF2EAF31E2C20C300053FE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BF2EAF11E2C20C300053FE7 /* GoogleService-Info.plist */; };
 		6BFB93731E1EE7E200737738 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFB93721E1EE7E200737738 /* main.m */; };
@@ -51,6 +52,7 @@
 		6B2E44951E6375EE00920514 /* UserListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListTableViewCell.h; sourceTree = "<group>"; };
 		6B2E44961E6375EE00920514 /* UserListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListTableViewCell.m; sourceTree = "<group>"; };
 		6B2E44971E6375EE00920514 /* UserListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserListTableViewCell.xib; sourceTree = "<group>"; };
+		6B46D5061E8849BE00387C85 /* README.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
 		6BF2EAF11E2C20C300053FE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6BFB936E1E1EE7E200737738 /* SafeChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BFB93721E1EE7E200737738 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 		6BFB93651E1EE7E200737738 = {
 			isa = PBXGroup;
 			children = (
+				6B46D5061E8849BE00387C85 /* README.rtf */,
 				6BF2EAF11E2C20C300053FE7 /* GoogleService-Info.plist */,
 				6BFB93A81E1EEE5000737738 /* Media.xcassets */,
 				6BFB93991E1EE80400737738 /* Frameworks */,
@@ -279,6 +282,7 @@
 			files = (
 				6BFB93841E1EE7E200737738 /* LaunchScreen.storyboard in Resources */,
 				6B2E44991E6375EE00920514 /* UserListTableViewCell.xib in Resources */,
+				6B46D5071E8849BE00387C85 /* README.rtf in Resources */,
 				6B2E44941E63468E00920514 /* UserListViewController.xib in Resources */,
 				6BFB93811E1EE7E200737738 /* Assets.xcassets in Resources */,
 				6BF2EAF21E2C20C300053FE7 /* GoogleService-Info.plist in Resources */,
