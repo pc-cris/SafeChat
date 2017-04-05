@@ -1,4 +1,5 @@
 PODS:
+  - 25519 (2.0.2)
   - AFNetworking (3.1.0):
     - AFNetworking/NSURLSession (= 3.1.0)
     - AFNetworking/Reachability (= 3.1.0)
@@ -14,6 +15,10 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - AxolotlKit (0.8):
+    - 25519 (~> 2.0.1)
+    - HKDFKit (~> 0.0.3)
+    - ProtocolBuffers (~> 1.9.8)
   - Firebase (3.11.0):
     - Firebase/Core (= 3.11.0)
   - Firebase/Core (3.11.0):
@@ -35,13 +40,18 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.0)
   - GoogleToolboxForMac/NSData+zlib (2.1.0):
     - GoogleToolboxForMac/Defines (= 2.1.0)
+  - HKDFKit (0.0.3)
+  - ProtocolBuffers (1.9.11)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - AxolotlKit (~> 0.8)
   - Firebase
 
 SPEC CHECKSUMS:
+  '25519': dc4bad7e2dbcbf1efa121068a705a44cd98c80fc
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AxolotlKit: a33962f26943990e5d69d05b30470cea18caeed0
   Firebase: b8134e285eb33201115bc688bc5d7f112923bc1f
   FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
   FirebaseCore: 03da1cb32615569bbc2830a22f9ad753d9a02ef5
@@ -49,7 +59,9 @@ SPEC CHECKSUMS:
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
+  HKDFKit: c058305d6f64b84f28c50bd7aa89574625bcb62a
+  ProtocolBuffers: d509225eb2ea43d9582a59e94348fcf86e2abd65
 
-PODFILE CHECKSUM: 7f4240373cf5d61c4ea3a09cb7554db055d524f1
+PODFILE CHECKSUM: 3cbbecc7d6868784e3deb730a7ce99b0e7e29695
 
 COCOAPODS: 1.1.1

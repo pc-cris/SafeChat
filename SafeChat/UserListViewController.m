@@ -136,6 +136,56 @@
         
         [self.userListTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     });
+    
+    [self createChannelForUser:selectedUser];
+    
+}
+
+- (void)createChannelForUser:(SBDUser*)user {
+    [SBDGroupChannel createChannelWithUsers:@[user] isDistinct:YES completionHandler:^(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error) {
+        if (error != nil) {
+            UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Error creating channel" message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            [vc addAction:closeAction];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:vc animated:YES completion:nil];
+            });
+            
+            //[self.activityIndicator stopAnimating];
+            
+            return;
+        }
+        
+        UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Created channel" message:@"Successfully created message channel" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [self dismissViewControllerAnimated:NO completion:^{
+                [self didFinishCreatingGroupChannel:channel viewController:self];
+            }];
+        }];
+        [vc addAction:closeAction];
+        [self presentViewController:vc animated:YES completion:^{
+            
+        }];
+        
+        //[self.activityIndicator stopAnimating];
+    }];
+}
+
+#pragma mark - CreateGroupChannelSelectOptionViewControllerDelegate
+- (void)didFinishCreatingGroupChannel:(SBDGroupChannel *)channel viewController:(UIViewController *)vc {
+    [self dismissViewControllerAnimated:NO completion:^{
+        [self openGroupChannel:channel viewController:self];
+    }];
+}
+
+- (void)openGroupChannel:(SBDGroupChannel *)channel viewController:(UIViewController *)vc {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        GroupChannelChattingViewController *vc = [[GroupChannelChattingViewController alloc] init];
+        vc.channel = channel;
+        [self presentViewController:vc animated:NO completion:nil];
+    });
 }
 
 #pragma mark - UITableViewDataSource

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B0F35C51E91A7C200918C2A /* OneToOneConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0F35C31E91A7C200918C2A /* OneToOneConversationViewController.m */; };
+		6B0F35C61E91A7C200918C2A /* OneToOneConversationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B0F35C41E91A7C200918C2A /* OneToOneConversationViewController.xib */; };
 		6B2E44931E63468E00920514 /* UserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2E44911E63468E00920514 /* UserListViewController.m */; };
 		6B2E44941E63468E00920514 /* UserListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B2E44921E63468E00920514 /* UserListViewController.xib */; };
 		6B2E44981E6375EE00920514 /* UserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2E44961E6375EE00920514 /* UserListTableViewCell.m */; };
@@ -46,6 +48,9 @@
 		3C65EEF5FB44C36E051862BF /* Pods-SafeChatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeChatTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SafeChatTests/Pods-SafeChatTests.release.xcconfig"; sourceTree = "<group>"; };
 		63DBDC5209676DA9B63108C7 /* Pods-SafeChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SafeChat/Pods-SafeChat.debug.xcconfig"; sourceTree = "<group>"; };
 		66D35D3AAEB8F0EB3A562577 /* Pods-SafeChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-SafeChat/Pods-SafeChat.release.xcconfig"; sourceTree = "<group>"; };
+		6B0F35C21E91A7C200918C2A /* OneToOneConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneToOneConversationViewController.h; sourceTree = "<group>"; };
+		6B0F35C31E91A7C200918C2A /* OneToOneConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneToOneConversationViewController.m; sourceTree = "<group>"; };
+		6B0F35C41E91A7C200918C2A /* OneToOneConversationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneToOneConversationViewController.xib; sourceTree = "<group>"; };
 		6B2E44901E63468E00920514 /* UserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListViewController.h; sourceTree = "<group>"; };
 		6B2E44911E63468E00920514 /* UserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListViewController.m; sourceTree = "<group>"; };
 		6B2E44921E63468E00920514 /* UserListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserListViewController.xib; sourceTree = "<group>"; };
@@ -157,6 +162,9 @@
 				6B2E44951E6375EE00920514 /* UserListTableViewCell.h */,
 				6B2E44961E6375EE00920514 /* UserListTableViewCell.m */,
 				6B2E44971E6375EE00920514 /* UserListTableViewCell.xib */,
+				6B0F35C21E91A7C200918C2A /* OneToOneConversationViewController.h */,
+				6B0F35C31E91A7C200918C2A /* OneToOneConversationViewController.m */,
+				6B0F35C41E91A7C200918C2A /* OneToOneConversationViewController.xib */,
 			);
 			path = SafeChat;
 			sourceTree = "<group>";
@@ -283,6 +291,7 @@
 				6BFB93841E1EE7E200737738 /* LaunchScreen.storyboard in Resources */,
 				6B2E44991E6375EE00920514 /* UserListTableViewCell.xib in Resources */,
 				6B46D5071E8849BE00387C85 /* README.rtf in Resources */,
+				6B0F35C61E91A7C200918C2A /* OneToOneConversationViewController.xib in Resources */,
 				6B2E44941E63468E00920514 /* UserListViewController.xib in Resources */,
 				6BFB93811E1EE7E200737738 /* Assets.xcassets in Resources */,
 				6BF2EAF21E2C20C300053FE7 /* GoogleService-Info.plist in Resources */,
@@ -400,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BFB93AD1E1EF90A00737738 /* SignInViewController.m in Sources */,
+				6B0F35C51E91A7C200918C2A /* OneToOneConversationViewController.m in Sources */,
 				6B2E44931E63468E00920514 /* UserListViewController.m in Sources */,
 				6BFB937F1E1EE7E200737738 /* SafeChat.xcdatamodeld in Sources */,
 				6BFB93761E1EE7E200737738 /* AppDelegate.m in Sources */,
