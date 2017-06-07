@@ -14,8 +14,12 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @property (readonly, strong) NSPersistentContainer *persistentContainer;
+@property (strong, nonatomic, nullable) NSString *receivedPushChannelUrl;
 
 - (void)saveContext;
+
++ (nonnull NSURLCache *)imageCache;
+
 
 
 @end

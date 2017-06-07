@@ -18,6 +18,17 @@
 
 @implementation AppDelegate
 
++ (nonnull NSURLCache *)imageCache {
+    static dispatch_once_t p = 0;
+    __strong static NSURLCache *_sharedObject = nil;
+    
+    dispatch_once(&p, ^{
+        _sharedObject = [NSURLCache sharedURLCache];
+    });
+    
+    return _sharedObject;
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
@@ -25,6 +36,9 @@
         [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
     }
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:42.0/255.0 green:172.0/255.0 blue:77.0/255.0 alpha:1.0]}];
+    
     [SBDMain initWithApplicationId:@"501B61B5-D7FA-4E33-BE3E-6D5F58C98367"];
     [SBDMain setLogLevel:SBDLogLevelDebug];
     [FIRApp configure];
@@ -116,5 +130,41 @@
         abort();
     }
 }
+
+#pragma mark - Push Notifications 
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"Device token: %@", deviceToken.description);
+    [SBDMain registerDevicePushToken:deviceToken unique:YES completionHandler:^(SBDPushTokenRegistrationStatus status, SBDError * _Nullable error) {
+        if (error == nil) {
+            if (status == SBDPushTokenRegistrationStatusPending) {
+                NSLog(@"Push registration is pending.");
+            }
+            else {
+                NSLog(@"APNS Token is registered.");
+            }
+        }
+        else {
+            NSLog(@"APNS registration failed.");
+        }
+    }];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Failed to get token, error: %@", error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    if (userInfo[@"sendbird"] != nil) {
+        NSDictionary *sendBirdPayload = userInfo[@"sendbird"];
+        NSString *channel = sendBirdPayload[@"channel"][@"channel_url"];
+        NSString *channelType = sendBirdPayload[@"channel_type"];
+        if ([channelType isEqualToString:@"group_messaging"]) {
+            self.receivedPushChannelUrl = channel;
+        }
+    }
+    
+}
+
 
 @end

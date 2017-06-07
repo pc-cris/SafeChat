@@ -1,0 +1,27 @@
+dependencies: \
+  /Users/Cristina/Desktop/SafeChat/SafeChat/IncomingFileMessageTableViewCell.m \
+  /Users/Cristina/Desktop/SafeChat/Pods/Firebase/Core/Sources/module.modulemap \
+  /Users/Cristina/Desktop/SafeChat/SafeChat/IncomingFileMessageTableViewCell.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Modules/module.modulemap \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDPreviousMessageListQuery.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDMessageListQuery.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDChannelEvent.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDCommand.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDInternalTypes.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDUserListQuery.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDOpenChannel.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDOpenChannelListQuery.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDGroupChannelListQuery.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDGroupChannel.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDFileMessage.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDAdminMessage.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDBaseMessage.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDUserMessage.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDBaseChannel.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDTypes.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDError.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDUser.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SBDMain.h \
+  /Users/Cristina/Desktop/SafeChat/SendBirdSDK.framework/Headers/SendBirdSDK.h \
+  /Users/Cristina/Desktop/SafeChat/SafeChat/MessageDelegate.h \
+  /Users/Cristina/Desktop/SafeChat/DesignConstants.h

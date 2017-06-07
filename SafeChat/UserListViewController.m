@@ -9,6 +9,10 @@
 #import <SendBirdSDK/SendBirdSDK.h>
 #import "UserListViewController.h"
 #import "UserListTableViewCell.h"
+#import "OneToOneConversationViewController.h"
+#import "UserProfileViewController.h"
+#import "DesignConstants.h"
+#import "AppDelegate.h"
 
 @interface UserListViewController ()
 
@@ -26,13 +30,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIBarButtonItem *disconnectButton = [[UIBarButtonItem alloc] initWithTitle:@"Disconnect" style:UIBarButtonItemStylePlain target:self action:@selector(disconnect)];
+    UIBarButtonItem *disconnectButton = [[UIBarButtonItem alloc] initWithTitle:@"Disconnect" style:UIBarButtonItemStyleDone target:self action:@selector(disconnect)];
+    [disconnectButton setTitleTextAttributes:@{NSFontAttributeName: [DesignConstants navigationBarButtonItemFont], NSForegroundColorAttributeName: [UIColor colorWithRed:42.0/255.0 green:172.0/255.0 blue:77.0/255.0 alpha:1.0]} forState:UIControlStateNormal];
+    
+    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"user_profile"] style:UIBarButtonItemStylePlain target:self action:@selector(showProfile)];
+    [profileButton setTintColor:[UIColor colorWithRed:42.0/255.0 green:172.0/255.0 blue:77.0/255.0 alpha:1.0]];
+    
     self.userListNavigationItem.rightBarButtonItem = disconnectButton;
+    self.userListNavigationItem.leftBarButtonItem = profileButton;
     
     self.userListTableView.delegate = self;
     self.userListTableView.dataSource = self;
-    //[self.userListTableView registerNib:[CreateGroupChannelUserListTableViewCell nib] forCellReuseIdentifier:[CreateGroupChannelUserListTableViewCell cellReuseIdentifier]];
-    
+
     self.userListRefreshControl = [[UIRefreshControl alloc] init];
     [self.userListRefreshControl addTarget:self action:@selector(refreshUserList) forControlEvents:UIControlEventValueChanged];
     [self.userListTableView addSubview:self.userListRefreshControl];
@@ -111,6 +120,15 @@
     }];
 }
 
+- (void)showProfile {
+    UserProfileViewController *vc = [[UserProfileViewController alloc] init];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:vc animated:NO completion:nil];
+    });
+
+    
+}
+
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 56;
@@ -160,9 +178,9 @@
         
         UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Created channel" message:@"Successfully created message channel" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self dismissViewControllerAnimated:NO completion:^{
+            //[self dismissViewControllerAnimated:NO completion:^{
                 [self didFinishCreatingGroupChannel:channel viewController:self];
-            }];
+           // }];
         }];
         [vc addAction:closeAction];
         [self presentViewController:vc animated:YES completion:^{
@@ -175,16 +193,20 @@
 
 #pragma mark - CreateGroupChannelSelectOptionViewControllerDelegate
 - (void)didFinishCreatingGroupChannel:(SBDGroupChannel *)channel viewController:(UIViewController *)vc {
-    [self dismissViewControllerAnimated:NO completion:^{
+    //[self dismissViewControllerAnimated:NO completion:^{
         [self openGroupChannel:channel viewController:self];
-    }];
+   // }];
 }
 
 - (void)openGroupChannel:(SBDGroupChannel *)channel viewController:(UIViewController *)vc {
     dispatch_async(dispatch_get_main_queue(), ^{
-        GroupChannelChattingViewController *vc = [[GroupChannelChattingViewController alloc] init];
-        vc.channel = channel;
-        [self presentViewController:vc animated:NO completion:nil];
+        OneToOneConversationViewController *conv = [[OneToOneConversationViewController alloc] init];
+        conv.channel = channel;
+        //vc.channel = channel;
+        //GroupChannelChattingViewController *vc = [[GroupChannelChattingViewController alloc] init];
+        //vc.channel = channel;
+        //UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:conv];
+        [self presentViewController:conv animated:NO completion:nil];
     });
 }
 

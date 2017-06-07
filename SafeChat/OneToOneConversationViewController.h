@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SendBirdSDK/SendBirdSDK.h>
+#import "ChattingView.h"
+#import "MessageDelegate.h"
 
-@interface OneToOneConversationViewController : UIViewController
+@interface OneToOneConversationViewController : UIViewController<SBDConnectionDelegate, SBDChannelDelegate, ChattingViewDelegate, MessageDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@property (strong, nonatomic) SBDGroupChannel *channel;
 
 @end

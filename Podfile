@@ -13,7 +13,12 @@ target 'SafeChat' do
   platform :ios, '8.0'
 
   pod 'AFNetworking', '~> 3.0'
-  pod 'AxolotlKit', '~> 0.8'
+  pod 'TTTAttributedLabel'
+  pod 'FLAnimatedImage', '~> 1.0'
+  pod 'NYTPhotoViewer', '~> 1.1.0'
+  pod 'MGSwipeTableCell'
+  pod 'RSKImageCropper'
+  pod 'HTMLKit’
 
   target 'SafeChatTests' do
     inherit! :search_paths

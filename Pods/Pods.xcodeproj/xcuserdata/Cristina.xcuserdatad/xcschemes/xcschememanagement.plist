@@ -4,17 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>25519.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>AxolotlKit.xcscheme</key>
+		<key>FLAnimatedImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -24,7 +19,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>HKDFKit.xcscheme</key>
+		<key>HTMLKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MGSwipeTableCell.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>NYTPhotoViewer-NYTPhotoViewer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>NYTPhotoViewer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -39,7 +49,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>ProtocolBuffers.xcscheme</key>
+		<key>RSKImageCropper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>TTTAttributedLabel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -47,17 +62,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>02289EF2EFCF9F54E3192C4ADDC20A8B</key>
+		<key>0BEF6678D7D42182A0D570E6DF61DC63</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>27C54B8E27586068F70C0401DDA9EEC6</key>
+		<key>2D41637AE6F61C2B1F0D78C95417BEE8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9C458758E53DAB90149D869AB72E45C9</key>
+		<key>43AFBF4F2CD231A7499E3B7813A16837</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4631E28F67B81D39064B0FC9353AA838</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>53F8571E2D572C4069860E38654A566A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9884389DCEC9B5CFEF7D2E4CD1FA1C43</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,7 +97,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B675624AFCBEB66B64897D7115B452F4</key>
+		<key>B7A3E36C80DA54A94ABA4F38B4550EA4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,12 +107,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E05850002820AB37E2F5E3485CCA61D9</key>
+		<key>E1BBB76ADBF2EF4EF2CE5DF6BBC77296</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E1BBB76ADBF2EF4EF2CE5DF6BBC77296</key>
+		<key>E28FF52E037F12A636856202D7DDC9E7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
