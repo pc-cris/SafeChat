@@ -15,6 +15,13 @@
 		5A6604371E962C0B00D58149 /* ReusableViewFromXibFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6604361E962C0B00D58149 /* ReusableViewFromXibFile.m */; };
 		5A66043A1E962CBF00D58149 /* ChattingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6604391E962CBF00D58149 /* ChattingView.m */; };
 		5A66043C1E9631AD00D58149 /* ChattingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A66043B1E9631AD00D58149 /* ChattingView.xib */; };
+		6B0396931EF5479500F06994 /* libBigInteger-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0396921EF5479500F06994 /* libBigInteger-iOS.a */; };
+		6B0396981EF54C5700F06994 /* PCBigNoGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0396971EF54C5700F06994 /* PCBigNoGenerator.m */; };
+		6B03969B1EF54C6800F06994 /* PCConstantsAndKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B03969A1EF54C6800F06994 /* PCConstantsAndKeys.m */; };
+		6B0396A21EF54C7800F06994 /* PCDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B03969D1EF54C7800F06994 /* PCDecryptor.m */; };
+		6B0396A31EF54C7800F06994 /* PCEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B03969F1EF54C7800F06994 /* PCEncryptor.m */; };
+		6B0396A41EF54C7800F06994 /* PCLookUpASCIITable.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0396A11EF54C7800F06994 /* PCLookUpASCIITable.m */; };
+		6B0396A81EF54DC500F06994 /* EncryptionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0396A71EF54DC500F06994 /* EncryptionManager.m */; };
 		6B03B3BD1EB76CE1004529FA /* DesignConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B03B3BC1EB76CE1004529FA /* DesignConstants.m */; };
 		6B03B3C11EB7911C004529FA /* NeutralMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B03B3BF1EB7911C004529FA /* NeutralMessageTableViewCell.m */; };
 		6B03B3C21EB7911C004529FA /* NeutralMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B03B3C01EB7911C004529FA /* NeutralMessageTableViewCell.xib */; };
@@ -89,15 +96,29 @@
 		5A4D89FC1E9FCA9900DA7953 /* OutgoingUserMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutgoingUserMessageTableViewCell.h; sourceTree = "<group>"; };
 		5A4D89FD1E9FCA9900DA7953 /* OutgoingUserMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutgoingUserMessageTableViewCell.m; sourceTree = "<group>"; };
 		5A4D89FE1E9FCA9900DA7953 /* OutgoingUserMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingUserMessageTableViewCell.xib; sourceTree = "<group>"; };
-		5A6604351E962C0B00D58149 /* ReusableViewFromXibFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReusableViewFromXibFile.h; path = ../ReusableViewFromXibFile.h; sourceTree = "<group>"; };
-		5A6604361E962C0B00D58149 /* ReusableViewFromXibFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReusableViewFromXibFile.m; path = ../ReusableViewFromXibFile.m; sourceTree = "<group>"; };
-		5A6604381E962CBF00D58149 /* ChattingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChattingView.h; path = ../ChattingView.h; sourceTree = "<group>"; };
-		5A6604391E962CBF00D58149 /* ChattingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChattingView.m; path = ../ChattingView.m; sourceTree = "<group>"; };
-		5A66043B1E9631AD00D58149 /* ChattingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChattingView.xib; sourceTree = "<group>"; };
+		5A6604351E962C0B00D58149 /* ReusableViewFromXibFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReusableViewFromXibFile.h; sourceTree = "<group>"; };
+		5A6604361E962C0B00D58149 /* ReusableViewFromXibFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReusableViewFromXibFile.m; sourceTree = "<group>"; };
+		5A6604381E962CBF00D58149 /* ChattingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattingView.h; sourceTree = "<group>"; };
+		5A6604391E962CBF00D58149 /* ChattingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattingView.m; sourceTree = "<group>"; };
+		5A66043B1E9631AD00D58149 /* ChattingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChattingView.xib; path = SafeChat/ChattingView.xib; sourceTree = "<group>"; };
 		63DBDC5209676DA9B63108C7 /* Pods-SafeChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SafeChat/Pods-SafeChat.debug.xcconfig"; sourceTree = "<group>"; };
 		66D35D3AAEB8F0EB3A562577 /* Pods-SafeChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-SafeChat/Pods-SafeChat.release.xcconfig"; sourceTree = "<group>"; };
-		6B03B3BB1EB76CE1004529FA /* DesignConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DesignConstants.h; sourceTree = "<group>"; };
-		6B03B3BC1EB76CE1004529FA /* DesignConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesignConstants.m; sourceTree = "<group>"; };
+		6B0396921EF5479500F06994 /* libBigInteger-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libBigInteger-iOS.a"; sourceTree = "<group>"; };
+		6B0396941EF547A300F06994 /* BigInteger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BigInteger.h; sourceTree = "<group>"; };
+		6B0396961EF54C4B00F06994 /* PCBigNoGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PCBigNoGenerator.h; sourceTree = "<group>"; };
+		6B0396971EF54C5700F06994 /* PCBigNoGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCBigNoGenerator.m; sourceTree = "<group>"; };
+		6B0396991EF54C6800F06994 /* PCConstantsAndKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCConstantsAndKeys.h; sourceTree = "<group>"; };
+		6B03969A1EF54C6800F06994 /* PCConstantsAndKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCConstantsAndKeys.m; sourceTree = "<group>"; };
+		6B03969C1EF54C7800F06994 /* PCDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCDecryptor.h; sourceTree = "<group>"; };
+		6B03969D1EF54C7800F06994 /* PCDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCDecryptor.m; sourceTree = "<group>"; };
+		6B03969E1EF54C7800F06994 /* PCEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCEncryptor.h; sourceTree = "<group>"; };
+		6B03969F1EF54C7800F06994 /* PCEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCEncryptor.m; sourceTree = "<group>"; };
+		6B0396A01EF54C7800F06994 /* PCLookUpASCIITable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCLookUpASCIITable.h; sourceTree = "<group>"; };
+		6B0396A11EF54C7800F06994 /* PCLookUpASCIITable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCLookUpASCIITable.m; sourceTree = "<group>"; };
+		6B0396A61EF54DC500F06994 /* EncryptionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncryptionManager.h; sourceTree = "<group>"; };
+		6B0396A71EF54DC500F06994 /* EncryptionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncryptionManager.m; sourceTree = "<group>"; };
+		6B03B3BB1EB76CE1004529FA /* DesignConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DesignConstants.h; path = ../DesignConstants.h; sourceTree = "<group>"; };
+		6B03B3BC1EB76CE1004529FA /* DesignConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DesignConstants.m; path = ../DesignConstants.m; sourceTree = "<group>"; };
 		6B03B3BE1EB7911C004529FA /* NeutralMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeutralMessageTableViewCell.h; sourceTree = "<group>"; };
 		6B03B3BF1EB7911C004529FA /* NeutralMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NeutralMessageTableViewCell.m; sourceTree = "<group>"; };
 		6B03B3C01EB7911C004529FA /* NeutralMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NeutralMessageTableViewCell.xib; sourceTree = "<group>"; };
@@ -107,8 +128,8 @@
 		6B03B3C81EB79990004529FA /* OutgoingImageFileMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutgoingImageFileMessageTableViewCell.h; sourceTree = "<group>"; };
 		6B03B3C91EB79990004529FA /* OutgoingImageFileMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutgoingImageFileMessageTableViewCell.m; sourceTree = "<group>"; };
 		6B03B3CA1EB79990004529FA /* OutgoingImageFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingImageFileMessageTableViewCell.xib; sourceTree = "<group>"; };
-		6B03B3CD1EB79A26004529FA /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
-		6B03B3CE1EB79A26004529FA /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		6B03B3CD1EB79A26004529FA /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = ../Utils.h; sourceTree = "<group>"; };
+		6B03B3CE1EB79A26004529FA /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utils.m; path = ../Utils.m; sourceTree = "<group>"; };
 		6B03B3D01EB7A374004529FA /* OutgoingFileMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutgoingFileMessageTableViewCell.h; sourceTree = "<group>"; };
 		6B03B3D11EB7A374004529FA /* OutgoingFileMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutgoingFileMessageTableViewCell.m; sourceTree = "<group>"; };
 		6B03B3D21EB7A374004529FA /* OutgoingFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingFileMessageTableViewCell.xib; sourceTree = "<group>"; };
@@ -130,8 +151,8 @@
 		6B03B3EE1EB7BAAD004529FA /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutgoingGeneralUrlPreviewTempMessageTableViewCell.h; sourceTree = "<group>"; };
 		6B03B3EF1EB7BAAD004529FA /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutgoingGeneralUrlPreviewTempMessageTableViewCell.m; sourceTree = "<group>"; };
 		6B03B3F01EB7BAAD004529FA /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib; sourceTree = "<group>"; };
-		6B03B3F31EB7BDE9004529FA /* FLAnimatedImageView+ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImageView+ImageCache.h"; sourceTree = "<group>"; };
-		6B03B3F41EB7BDE9004529FA /* FLAnimatedImageView+ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLAnimatedImageView+ImageCache.m"; sourceTree = "<group>"; };
+		6B03B3F31EB7BDE9004529FA /* FLAnimatedImageView+ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FLAnimatedImageView+ImageCache.h"; path = "../FLAnimatedImageView+ImageCache.h"; sourceTree = "<group>"; };
+		6B03B3F41EB7BDE9004529FA /* FLAnimatedImageView+ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FLAnimatedImageView+ImageCache.m"; path = "../FLAnimatedImageView+ImageCache.m"; sourceTree = "<group>"; };
 		6B0F35C21E91A7C200918C2A /* OneToOneConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneToOneConversationViewController.h; sourceTree = "<group>"; };
 		6B0F35C31E91A7C200918C2A /* OneToOneConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneToOneConversationViewController.m; sourceTree = "<group>"; };
 		6B0F35C41E91A7C200918C2A /* OneToOneConversationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneToOneConversationViewController.xib; sourceTree = "<group>"; };
@@ -184,6 +205,7 @@
 				6BFB939F1E1EE93000737738 /* CoreData.framework in Frameworks */,
 				6BFB939D1E1EE92400737738 /* AVFoundation.framework in Frameworks */,
 				90E1055E452F6C2822544702 /* libPods-SafeChat.a in Frameworks */,
+				6B0396931EF5479500F06994 /* libBigInteger-iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,21 +270,90 @@
 				6B03B3EE1EB7BAAD004529FA /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.h */,
 				6B03B3EF1EB7BAAD004529FA /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.m */,
 				6B03B3F01EB7BAAD004529FA /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib */,
+				6B2E44951E6375EE00920514 /* UserListTableViewCell.h */,
+				6B2E44961E6375EE00920514 /* UserListTableViewCell.m */,
+				6B2E44971E6375EE00920514 /* UserListTableViewCell.xib */,
 			);
 			name = Cells;
+			path = SafeChat;
+			sourceTree = "<group>";
+		};
+		6B0396951EF5480E00F06994 /* PCEncryption */ = {
+			isa = PBXGroup;
+			children = (
+				6B0396A61EF54DC500F06994 /* EncryptionManager.h */,
+				6B0396A71EF54DC500F06994 /* EncryptionManager.m */,
+				6B0396991EF54C6800F06994 /* PCConstantsAndKeys.h */,
+				6B03969A1EF54C6800F06994 /* PCConstantsAndKeys.m */,
+				6B0396A01EF54C7800F06994 /* PCLookUpASCIITable.h */,
+				6B0396A11EF54C7800F06994 /* PCLookUpASCIITable.m */,
+				6B03969C1EF54C7800F06994 /* PCDecryptor.h */,
+				6B03969D1EF54C7800F06994 /* PCDecryptor.m */,
+				6B03969E1EF54C7800F06994 /* PCEncryptor.h */,
+				6B03969F1EF54C7800F06994 /* PCEncryptor.m */,
+				6B0396961EF54C4B00F06994 /* PCBigNoGenerator.h */,
+				6B0396971EF54C5700F06994 /* PCBigNoGenerator.m */,
+			);
+			name = PCEncryption;
+			sourceTree = "<group>";
+		};
+		6BF541CF1EEC60DB0016969E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5A4D89F61E9FC6E100DA7953 /* Cells */,
+				5A6604381E962CBF00D58149 /* ChattingView.h */,
+				5A6604391E962CBF00D58149 /* ChattingView.m */,
+				5A66043B1E9631AD00D58149 /* ChattingView.xib */,
+				5A6604351E962C0B00D58149 /* ReusableViewFromXibFile.h */,
+				5A6604361E962C0B00D58149 /* ReusableViewFromXibFile.m */,
+			);
+			name = Views;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		6BF541D01EEC61290016969E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6BFB93AB1E1EF90A00737738 /* SignInViewController.h */,
+				6BFB93AC1E1EF90A00737738 /* SignInViewController.m */,
+				6B2E44901E63468E00920514 /* UserListViewController.h */,
+				6B2E44911E63468E00920514 /* UserListViewController.m */,
+				6B2E44921E63468E00920514 /* UserListViewController.xib */,
+				6B0F35C21E91A7C200918C2A /* OneToOneConversationViewController.h */,
+				6B0F35C31E91A7C200918C2A /* OneToOneConversationViewController.m */,
+				6B0F35C41E91A7C200918C2A /* OneToOneConversationViewController.xib */,
+				6BF541CA1EE88FD30016969E /* UserProfileViewController.h */,
+				6BF541CB1EE88FD30016969E /* UserProfileViewController.m */,
+				6BF541CC1EE88FD30016969E /* UserProfileViewController.xib */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		6BF541D11EEC613C0016969E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6B03B3CD1EB79A26004529FA /* Utils.h */,
+				6B03B3CE1EB79A26004529FA /* Utils.m */,
+				6B03B3BB1EB76CE1004529FA /* DesignConstants.h */,
+				6B03B3BC1EB76CE1004529FA /* DesignConstants.m */,
+				6B03B3F31EB7BDE9004529FA /* FLAnimatedImageView+ImageCache.h */,
+				6B03B3F41EB7BDE9004529FA /* FLAnimatedImageView+ImageCache.m */,
+				5A4D89F21E9FBE9F00DA7953 /* MessageDelegate.h */,
+				5A4D89F31E9FC10700DA7953 /* OutgoingGeneralUrlPreviewTempModel.h */,
+				5A4D89F41E9FC10700DA7953 /* OutgoingGeneralUrlPreviewTempModel.m */,
+				6B233AD21EE1815000B99770 /* ChatImage.h */,
+				6B233AD31EE1815000B99770 /* ChatImage.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		6BFB93651E1EE7E200737738 = {
 			isa = PBXGroup;
 			children = (
-				6B03B3F31EB7BDE9004529FA /* FLAnimatedImageView+ImageCache.h */,
-				6B03B3F41EB7BDE9004529FA /* FLAnimatedImageView+ImageCache.m */,
-				6B03B3CD1EB79A26004529FA /* Utils.h */,
-				6B03B3CE1EB79A26004529FA /* Utils.m */,
-				6B03B3BB1EB76CE1004529FA /* DesignConstants.h */,
-				6B03B3BC1EB76CE1004529FA /* DesignConstants.m */,
 				6B46D5061E8849BE00387C85 /* README.rtf */,
 				6BF2EAF11E2C20C300053FE7 /* GoogleService-Info.plist */,
+				6B0396941EF547A300F06994 /* BigInteger.h */,
+				6B0396921EF5479500F06994 /* libBigInteger-iOS.a */,
 				6BFB93A81E1EEE5000737738 /* Media.xcassets */,
 				6BFB93991E1EE80400737738 /* Frameworks */,
 				6BFB93701E1EE7E200737738 /* SafeChat */,
@@ -284,39 +375,18 @@
 		6BFB93701E1EE7E200737738 /* SafeChat */ = {
 			isa = PBXGroup;
 			children = (
-				5A4D89F61E9FC6E100DA7953 /* Cells */,
-				5A6604381E962CBF00D58149 /* ChattingView.h */,
-				5A6604391E962CBF00D58149 /* ChattingView.m */,
-				5A6604351E962C0B00D58149 /* ReusableViewFromXibFile.h */,
-				5A6604361E962C0B00D58149 /* ReusableViewFromXibFile.m */,
+				6B0396951EF5480E00F06994 /* PCEncryption */,
+				6BF541D11EEC613C0016969E /* Utils */,
+				6BF541D01EEC61290016969E /* ViewControllers */,
+				6BF541CF1EEC60DB0016969E /* Views */,
 				6BFB93741E1EE7E200737738 /* AppDelegate.h */,
 				6BFB93751E1EE7E200737738 /* AppDelegate.m */,
 				6BFB937A1E1EE7E200737738 /* Main.storyboard */,
-				6BFB93AB1E1EF90A00737738 /* SignInViewController.h */,
-				6BFB93AC1E1EF90A00737738 /* SignInViewController.m */,
 				6BFB93821E1EE7E200737738 /* LaunchScreen.storyboard */,
 				6BFB93711E1EE7E200737738 /* Supporting Files */,
 				6BFB93801E1EE7E200737738 /* Assets.xcassets */,
 				6BFB937D1E1EE7E200737738 /* SafeChat.xcdatamodeld */,
 				6BFB93851E1EE7E200737738 /* Info.plist */,
-				6B2E44901E63468E00920514 /* UserListViewController.h */,
-				6B2E44911E63468E00920514 /* UserListViewController.m */,
-				6B2E44921E63468E00920514 /* UserListViewController.xib */,
-				6B2E44951E6375EE00920514 /* UserListTableViewCell.h */,
-				6B2E44961E6375EE00920514 /* UserListTableViewCell.m */,
-				6B2E44971E6375EE00920514 /* UserListTableViewCell.xib */,
-				6B0F35C21E91A7C200918C2A /* OneToOneConversationViewController.h */,
-				6B0F35C31E91A7C200918C2A /* OneToOneConversationViewController.m */,
-				6B0F35C41E91A7C200918C2A /* OneToOneConversationViewController.xib */,
-				5A66043B1E9631AD00D58149 /* ChattingView.xib */,
-				5A4D89F21E9FBE9F00DA7953 /* MessageDelegate.h */,
-				5A4D89F31E9FC10700DA7953 /* OutgoingGeneralUrlPreviewTempModel.h */,
-				5A4D89F41E9FC10700DA7953 /* OutgoingGeneralUrlPreviewTempModel.m */,
-				6B233AD21EE1815000B99770 /* ChatImage.h */,
-				6B233AD31EE1815000B99770 /* ChatImage.m */,
-				6BF541CA1EE88FD30016969E /* UserProfileViewController.h */,
-				6BF541CB1EE88FD30016969E /* UserProfileViewController.m */,
-				6BF541CC1EE88FD30016969E /* UserProfileViewController.xib */,
 			);
 			path = SafeChat;
 			sourceTree = "<group>";
@@ -577,17 +647,22 @@
 				6BF541CD1EE88FD30016969E /* UserProfileViewController.m in Sources */,
 				6BFB93AD1E1EF90A00737738 /* SignInViewController.m in Sources */,
 				6B03B3DD1EB7AA89004529FA /* IncomingVideoFileMessageTableViewCell.m in Sources */,
+				6B0396A21EF54C7800F06994 /* PCDecryptor.m in Sources */,
 				5A4D89F51E9FC10700DA7953 /* OutgoingGeneralUrlPreviewTempModel.m in Sources */,
 				5A4D89FA1E9FC71B00DA7953 /* IncomingUserMessageTableViewCell.m in Sources */,
+				6B03969B1EF54C6800F06994 /* PCConstantsAndKeys.m in Sources */,
+				6B0396A31EF54C7800F06994 /* PCEncryptor.m in Sources */,
 				6B03B3D81EB7A63B004529FA /* IncomingImageFileMessageTableViewCell.m in Sources */,
 				5A6604371E962C0B00D58149 /* ReusableViewFromXibFile.m in Sources */,
 				6B03B3E21EB7ABF0004529FA /* OutgoingVideoFileMessageTableViewCell.m in Sources */,
 				5A4D89FF1E9FCA9900DA7953 /* OutgoingUserMessageTableViewCell.m in Sources */,
 				6B03B3BD1EB76CE1004529FA /* DesignConstants.m in Sources */,
+				6B0396A41EF54C7800F06994 /* PCLookUpASCIITable.m in Sources */,
 				5A66043A1E962CBF00D58149 /* ChattingView.m in Sources */,
 				6B0F35C51E91A7C200918C2A /* OneToOneConversationViewController.m in Sources */,
 				6B2E44931E63468E00920514 /* UserListViewController.m in Sources */,
 				6B03B3D31EB7A374004529FA /* OutgoingFileMessageTableViewCell.m in Sources */,
+				6B0396981EF54C5700F06994 /* PCBigNoGenerator.m in Sources */,
 				6B03B3EC1EB7B71D004529FA /* OutgoingGeneralUrlPreviewMessageTableViewCell.m in Sources */,
 				6B03B3CB1EB79990004529FA /* OutgoingImageFileMessageTableViewCell.m in Sources */,
 				6B03B3F51EB7BDE9004529FA /* FLAnimatedImageView+ImageCache.m in Sources */,
@@ -598,6 +673,7 @@
 				6B03B3E71EB7AED4004529FA /* IncomingGeneralUrlPreviewMessageTableViewCell.m in Sources */,
 				6B03B3F11EB7BAAD004529FA /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.m in Sources */,
 				6B03B3C61EB7947D004529FA /* IncomingFileMessageTableViewCell.m in Sources */,
+				6B0396A81EF54DC500F06994 /* EncryptionManager.m in Sources */,
 				6B2E44981E6375EE00920514 /* UserListTableViewCell.m in Sources */,
 				6BFB93731E1EE7E200737738 /* main.m in Sources */,
 				6B03B3CF1EB79A26004529FA /* Utils.m in Sources */,
@@ -745,6 +821,10 @@
 				INFOPLIST_FILE = SafeChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PC.SafeChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -763,6 +843,10 @@
 				INFOPLIST_FILE = SafeChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.PC.SafeChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
