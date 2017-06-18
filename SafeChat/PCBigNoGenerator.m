@@ -71,10 +71,80 @@ static NSString *primeNoLastDigits        = @"1379";
 #pragma mark -
 #pragma mark Key methods
 
+- (NSDictionary*)pregeneratedPrimeNumbers {
+    NSDictionary *primes = @{
+                                    @"0": [self initializeBigIntWithStr:SmallFirstPrime] ,
+                                    @"1": [self initializeBigIntWithStr:SmallSecondPrime],
+                                    @"2": [self initializeBigIntWithStr:SmallThirdPrime],
+                                    @"3": [self initializeBigIntWithStr:SmallFourthPrime],
+                                    @"4": [self initializeBigIntWithStr:SmallFifthPrime],
+                                    @"5": [self initializeBigIntWithStr:SmallSixthPrime],
+                                    @"6": [self initializeBigIntWithStr:SmallSeventhPrime],
+                                    @"7": [self initializeBigIntWithStr:SmallEighthPrime],
+                                    @"8": [self initializeBigIntWithStr:SmallNinthPrime],
+                                    @"9": [self initializeBigIntWithStr:SmallTenthPrime]
+                            };
+    
+    return primes;
+}
+
+- (BigInteger*)initializeBigIntWithStr:(NSString*)str {
+    
+    return [[BigInteger alloc] initWithString:str radix:10];
+    
+}
+
+- (NSDictionary*)pregeneratedPrimeFactorsForM {
+    
+    NSDictionary *primeFactors = @{
+                                   SmallFirstPrime: [self initializePrimeFactorsArrayWithArray:SmallFirstPrimeMFactors],
+                                   SmallSecondPrime: [self initializePrimeFactorsArrayWithArray:SmallSecondPrimeMFactors],
+                                   SmallThirdPrime: [self initializePrimeFactorsArrayWithArray:SmallThirdPrimeMFactors],
+                                   SmallFourthPrime: [self initializePrimeFactorsArrayWithArray:SmallFourthPrimeMFactors],
+                                   SmallFifthPrime: [self initializePrimeFactorsArrayWithArray:SmallFifthPrimeMFactors],
+                                   SmallSixthPrime: [self initializePrimeFactorsArrayWithArray:SmallSixthPrimeMFactors],
+                                   SmallSeventhPrime: [self initializePrimeFactorsArrayWithArray:SmallSeventhPrimeMFactors],
+                                   SmallEighthPrime: [self initializePrimeFactorsArrayWithArray:SmallEighthPrimeMFactors],
+                                   SmallNinthPrime: [self initializePrimeFactorsArrayWithArray:SmallNinthPrimeMFactors],
+                                   SmallTenthPrime: [self initializePrimeFactorsArrayWithArray:SmallTenthPrimeMFactors]
+                                   };
+    
+    return  primeFactors;
+}
+
+- (NSArray*)initializePrimeFactorsArrayWithArray:(NSArray*)factors {
+    
+    NSMutableArray *bigIntFactors = [NSMutableArray new];
+    for (int i = 0; i < [factors count]; i++) {
+        BigInteger *bigInt = [[BigInteger alloc] initWithString:[factors[i] stringByReplacingOccurrencesOfString:@" " withString:@""] radix:10];
+        [bigIntFactors addObject:bigInt];
+    }
+    
+    return [NSArray arrayWithArray:bigIntFactors];
+}
+
+- (NSDictionary*)pregeneratedGeneratorsForPrime {
+    
+    NSDictionary *generators = @{
+                                 SmallFirstPrime:   SmallFirstPrimeGenerator,
+                                 SmallSecondPrime:  SmallSecondPrimeGenerator,
+                                 SmallThirdPrime:   SmallThirdPrimeGenerator,
+                                 SmallFourthPrime:  SmallFourthPrimeGenerator,
+                                 SmallFifthPrime:   SmallFifthPrimeGenerator,
+                                 SmallSixthPrime:   SmallSixthPrimeGenerator,
+                                 SmallSeventhPrime: SmallSeventhPrimeGenerator,
+                                 SmallEighthPrime:  SmallEighthPrimeGenerator,
+                                 SmallNinthPrime:   SmallNinthPrimeGenerator,
+                                 SmallTenthPrime:   SmallTenthPrimeGenerator
+                                 };
+    
+    return generators;
+}
+
 - (NSString*)generateRandomDigitNumberWithSize:(NSUInteger)size {
     
     NSMutableString *key = [NSMutableString stringWithCapacity:size];
-    int counter = 0;
+    unsigned long counter = 0;
     uint32_t r = 0;
     //generate the first digit - make sure it's not 0; then, generate the remaining digits
     while(r == 0) {
@@ -87,7 +157,8 @@ static NSString *primeNoLastDigits        = @"1379";
         }
     }
     r = 0;
-    for (counter = (size - 3); counter >= 0; counter--) {
+    
+    for (counter = (size - 2); counter > 0; counter--) {
         //generate random digits and append them to key
         r = arc4random_uniform((uint32_t)[digits length]);
         [key appendFormat:@"%C", [digits characterAtIndex:r]];
@@ -128,23 +199,21 @@ static NSString *primeNoLastDigits        = @"1379";
 
 - (NSDictionary*)writeNForMillerRabinPrimalityTest:(BigInteger*)number {
     
-//    BigInteger *nMinusOne = [number sub:[self integerOne]];
-//    BigInteger *s = [self integerOne];
-//    BOOL found = NO;
-//    while (!found) {
-//        BigInteger *twoPowerS = [[[BigInteger alloc] initWithString:@"2" radix:10] exp:s modulo:[self integerOne]];
-//        BigInteger *t = [nMinusOne divide:twoPowerS];
-//        NSArray *divResult = [t divideAndRemainder:[[JKBigInteger alloc]initWithString:@"2"]];
-//        BigInteger *remainder = divResult[1];
-//        if ([remainder compare:[self integerOne]] == NSOrderedSame) {
-//            found = YES;
-//            
-//            return @{ @"s": s,
-//                      @"t": t
-//                      };
-//        }
-//        [s add:[self integerOne]];
-//    }
+    BigInteger *nMinusOne = [number sub:[self integerOne]];
+    BigInteger *s = [self integerOne];
+    BOOL found = NO;
+    while (!found) {
+        BigInteger *twoPowerS = [[[BigInteger alloc] initWithString:@"2" radix:10] exp:s modulo:[self integerOne]];
+        BigInteger *t = [nMinusOne divide:twoPowerS];
+        if ([t isOdd]) {
+            found = YES;
+            
+            return @{ @"s": s,
+                      @"t": t
+                      };
+        }
+        [s add:[self integerOne]];
+    }
     
     return @{};
 }
@@ -214,7 +283,6 @@ static NSString *primeNoLastDigits        = @"1379";
     BigInteger *factor = [[BigInteger alloc] initWithString:@"2" radix:10];
     BigInteger *middleM = [m divide:[[BigInteger alloc] initWithString:@"2" radix:10]];
     
-    //for (factor = [[BigInteger alloc] initWithString:@"2" radix:10]; [factor compare:middleM] == NSOrderedSame; factor = [factor add:[self integerOne]]) {
     while (!([factor compare:middleM] == NSOrderedSame)) {
         BOOL shouldAdd = NO;
         BigInteger *copy = [[BigInteger alloc] initWithBigInteger:mForDivision];
@@ -236,13 +304,19 @@ static NSString *primeNoLastDigits        = @"1379";
     return [[NSArray alloc]initWithArray:factors];
 }
 
+- (NSArray*)primeFactorsForMPrimeNumber:(BigInteger*)primeNumber {
+    
+    NSString *noKey = [NSString stringWithFormat:@"%@", [primeNumber toRadix:10]];
+    return [[self pregeneratedPrimeFactorsForM] valueForKey:noKey];
+}
+
 - (BigInteger*)findGeneratorG:(BigInteger*)primeNumber {
-    //PCTODO
+    
     BigInteger *m = [primeNumber sub:[self integerOne]];
-    NSArray *mFactors = [self primeFactorizationOfM:m];
+    NSArray *mFactors = [self primeFactorsForMPrimeNumber:primeNumber];
     BigInteger *generator = [[BigInteger alloc] initWithString:@"2" radix:10];
     BOOL gFound = NO;
-    while (!gFound) {
+    while (!gFound && ([generator compare:m] != NSOrderedSame)) {
         BOOL areAllDifferentFromOne = YES;
         unsigned long long index = 0;
         for (index = 0; index < [mFactors count]; index++) {
@@ -261,32 +335,17 @@ static NSString *primeNoLastDigits        = @"1379";
     }
     
     return [self integerOne];
-    
-    
-    //    JKBigInteger *i = [self integerOne];
-    //    JKBigInteger *r = [[JKBigInteger alloc]initWithString:@""];
-    //    JKBigInteger *n = [[JKBigInteger alloc]initWithString:@""];
-    //
-    //    for (i = [self integerOne]; [i compare:r] == NSOrderedSame; [i add:[self integerOne]]) {
-    //        JKBigInteger *pi = [[JKBigInteger alloc]initWithString:@""];
-    //        JKBigInteger *fraction = [n divide:pi];
-    //        JKBigInteger *a = [gElem pow:fraction andMod:[self integerOne]];
-    //        if ([a compare:[self integerOne]] == NSOrderedSame) {
-    //            gElem = [[JKBigInteger alloc]initWithString:@""];
-    //        }
-    //    }
-    //return gElem;
-    
 }
 
-- (void)selectPrivateKeyAndSaveItToUserDefaults:(BigInteger*)primeNumber {
+- (void)selectPrivateKeyAndSaveItToUserDefaults:(BigInteger*)primeNumber generator:(BigInteger*)generator {
     
-    //test
-    BigInteger *privateKey; //= [[BigInteger alloc]initWithString:@"1751" radix:10];
+    BigInteger *privateKey; 
     BOOL isSmaller = NO;
-    while (!isSmaller) {
+    BOOL isPKLargeEnough = NO;
+    while (!isSmaller && !isPKLargeEnough) {
         privateKey = [self generateRandomNumberOfRandomSize];
         isSmaller = ([privateKey compare:primeNumber] == NSOrderedAscending);
+        isPKLargeEnough = ([[generator exp:privateKey modulo:[self integerOne]] compare:primeNumber] == NSOrderedDescending);
     }
     
     NSData *privateKeyData = [NSKeyedArchiver archivedDataWithRootObject:privateKey];
@@ -295,24 +354,35 @@ static NSString *primeNoLastDigits        = @"1379";
     
 }
 
-- (NSDictionary*)computePublicKeysAndOperationInG {
+- (NSDictionary*)computePublicKeysAndOperationInGOrUsePreGenerated:(BOOL)usePregenerated {
     
-    BOOL isKeyPrime = NO;
-    BigInteger *key; // = [[BigInteger alloc] initWithString:@"2357" radix:10];
-    //generate keys until we find one that is a prime number
-    while (!isKeyPrime) {
-        key = [[BigInteger alloc] initWithString:[self generateRandomDigitNumberWithSize:KeyDigitLength] radix:10];
-        isKeyPrime = [self checkIfRandomNumberIsPrime:key];
+    BigInteger *key;
+    BigInteger *generator;
+    
+    //if we want to actually generate everything
+    if(!usePregenerated) {
+        BOOL isKeyPrime = NO;
+        //generate keys until we find one that is a prime number
+        while (!isKeyPrime) {
+            key = [[BigInteger alloc] initWithString:[self generateRandomDigitNumberWithSize:KeyDigitLength] radix:10];
+            isKeyPrime = [self checkIfRandomNumberIsPrime:key];
+        }
+        generator = [self findGeneratorG:key];
+        
+    } else {
+        unsigned int r = arc4random_uniform((uint32_t)9);
+        key = [[self pregeneratedPrimeNumbers] valueForKey:[NSString stringWithFormat:@"%d", r]];
+        NSString *g = [[self pregeneratedGeneratorsForPrime] valueForKey: [NSString stringWithFormat:@"%@", [key toRadix:10]]];
+        generator = [[BigInteger alloc] initWithString:g radix:10] ;
     }
     
-    //generate and save the private key
-    [self selectPrivateKeyAndSaveItToUserDefaults:key];
     
-    BigInteger *generator = [self findGeneratorG:key];
+    //generate and save the private key
+    [self selectPrivateKeyAndSaveItToUserDefaults:key generator:generator];
+    
     NSData *privateKeyData = [[NSUserDefaults standardUserDefaults] objectForKey:kPCPrivateKeyNSUserDefaultsKey];
     BigInteger *privateKey = [NSKeyedUnarchiver unarchiveObjectWithData:privateKeyData];
     
-    ///!!!! PCTODO - MUST MAKE SURE generator pow power > KEY!!! IF NOT, GENERATE ANOTHER a
     BigInteger *thirdKey = [generator exp:privateKey modulo:key];
     
     NSData *keyData =       [NSKeyedArchiver archivedDataWithRootObject:key];
@@ -332,49 +402,11 @@ static NSString *primeNoLastDigits        = @"1379";
     return publicKeys;
 }
 
-- (BOOL)generateKeysAndExposePublicKeys {
+- (NSDictionary*)generateKeysAndExposePublicKeysOrUsePregenerated:(BOOL)usePregenerated {
     
-    NSDictionary *publicKeys = [self computePublicKeysAndOperationInG];
-    //send them to firebase server
-    //With Firebase, the key is a URL and the value is arbitrary data that could be a number, string, boolean or object.
-    //let ref = FIRDatabase.database().reference(withPath: "user-public-keys") -> json root
-    //it will look like:
+    NSDictionary *publicKeys = [self computePublicKeysAndOperationInGOrUsePreGenerated:usePregenerated];
     
-    // The root of the tree
-    //    {
-    //        // grocery-items
-    //        "grocery-items": {
-    //
-    //            // grocery-items/milk
-    //            "milk": {
-    //
-    //                // grocery-items/milk/name
-    //                "name": "Milk",
-    //
-    //                // grocery-items/milk/addedByUser
-    //                "addedByUser": "David"
-    //            },
-    //
-    //            "pizza": {
-    //                "name": "Pizza",
-    //                "addedByUser": "Alice"
-    //            },
-    //        }
-    //    }
-    //https://www.raywenderlich.com/139322/firebase-tutorial-getting-started-2
-    //    let groceryItemRef = self.ref.child(text.lowercased()) - create a new child node -> we will use the username of the current user for this
-    //
-    //    // 4
-    //    groceryItemRef.setValue(groceryItem.toAnyObject()) -  set the dictionary directly to save it to the db
-    
-    
-    //refHandle = [_postRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-    //    NSDictionary *postDict = snapshot.value;
-    //    // ...
-    //}];
-    
-    
-    return YES;
+    return publicKeys;
     
 }
 

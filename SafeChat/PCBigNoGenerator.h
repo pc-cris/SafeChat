@@ -16,13 +16,6 @@
 + (void)resetSharedInstance;
 - (NSString*)generateRandomDigitNumberWithSize:(NSUInteger)size;
 - (BigInteger*)generateRandomNumberOfRandomSize;
-- (BOOL)checkIfRandomNumberIsPrime:(BigInteger*)number;
-- (void)selectCyclicGroupOfOrderNAndGeneratorG;
-- (void)selectPrivateKeyAndSaveItToUserDefaults:(BigInteger*)primeNumber;
-- (NSDictionary*)computePublicKeysAndOperationInG;
-- (BOOL)generateKeysAndExposePublicKeys;
-
-//temp
-- (NSArray*)primeFactorizationOfM:(BigInteger*)m ;
+- (NSDictionary*)generateKeysAndExposePublicKeysOrUsePregenerated:(BOOL)usePregenerated;
 
 @end

@@ -17,6 +17,6 @@
 + (PCDecryptor *)sharedInstance;
 + (void)setSharedInstance:(PCDecryptor *)sharedInstance;
 + (void)resetSharedInstance;
-+ (NSString*)decryptMessage:(NSDictionary*)message fromUser:(NSString*)username;
+- (NSString*)decryptMessage:(NSDictionary*)message;
 
 @end

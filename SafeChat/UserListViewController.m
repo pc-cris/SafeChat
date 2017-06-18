@@ -176,16 +176,16 @@
             return;
         }
         
-        UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Created channel" message:@"Successfully created message channel" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//        UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Created channel" message:@"Successfully created message channel" preferredStyle:UIAlertControllerStyleAlert];
+       // UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             //[self dismissViewControllerAnimated:NO completion:^{
                 [self didFinishCreatingGroupChannel:channel viewController:self];
            // }];
-        }];
-        [vc addAction:closeAction];
-        [self presentViewController:vc animated:YES completion:^{
+      //  }];
+       // [vc addAction:closeAction];
+       // [self presentViewController:vc animated:YES completion:^{
             
-        }];
+     //   }];
         
         //[self.activityIndicator stopAnimating];
     }];

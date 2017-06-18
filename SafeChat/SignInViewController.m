@@ -11,6 +11,9 @@
 #import "UserListViewController.h"
 
 @interface SignInViewController ()
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *usernameLabelBottomConstraint;
@@ -19,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *passwordLabelBottomConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *signInButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (atomic) BOOL keyboardShown;
+
 - (IBAction)signInButtonAction:(id)sender;
 
 @end
@@ -59,6 +64,17 @@
     
     [self.usernameTextField addTarget:self action:@selector(usernameTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.passwordTextField addTarget:self action:@selector(passwordTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidShow:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidHide:)
+                                                 name:UIKeyboardDidHideNotification
+                                               object:nil];
+
 
 }
 
@@ -124,10 +140,10 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     if (textField == self.usernameTextField) {
-        //self.usernameTextField.borderStyle = UITextBorderStyleLine;
+        //self.usernameTextField.borderStyle = UITextBorderStyleBezel;
     }
     else if (textField == self.passwordTextField) {
-        //self.passwordTextField.borderStyle = UITextBorderStyleLine;
+        //self.passwordTextField.borderStyle = UITextBorderStyleBezel;
     }
 }
 
@@ -136,10 +152,17 @@
         //self.usernameTextField.borderStyle = UITextBorderStyleNone;
     }
     else if (textField == self.passwordTextField) {
-        //self.passwordTextField.borderStyle = UITextBorderStyleNone;
+        self.passwordTextField.borderStyle = UITextBorderStyleNone;
     }
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.usernameTextField || textField == self.passwordTextField) {
+        [textField resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
 
 #pragma mark - UI Actions
 
@@ -229,6 +252,31 @@
     }
 
 }
+
+#pragma mark -
+#pragma mark - Keyboard delegate methods
+
+- (void)keyboardDidShow:(NSNotification *)notification {
+    self.keyboardShown = YES;
+    NSDictionary* keyboardInfo = [notification userInfo];
+    NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.bottomConstraint.constant = keyboardFrameBeginRect.size.height;
+        [self.view layoutIfNeeded];
+        //[self.tableView scroll:NO];
+    });
+}
+
+- (void)keyboardDidHide:(NSNotification *)notification {
+    self.keyboardShown = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.bottomConstraint.constant = 0;
+        [self.view layoutIfNeeded];
+        //[self.chattingView scrollToBottomWithForce:NO];
+    });
+}
+
 
 /*
 #pragma mark - Navigation

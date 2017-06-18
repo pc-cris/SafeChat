@@ -18,6 +18,6 @@
 + (PCEncryptor *)sharedInstance;
 + (void)setSharedInstance:(PCEncryptor *)sharedInstance;
 + (void)resetSharedInstance;
-+ (NSDictionary*)encryptMessage:(NSString*)message forUsername:(NSString*)username;
+- (NSDictionary*)encryptMessage:(NSString*)message usingKeys:(NSDictionary*)keys;
 
 @end

@@ -477,6 +477,7 @@
 				TargetAttributes = {
 					6BFB936D1E1EE7E200737738 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 3TLYMFKSJH;
 						ProvisioningStyle = Automatic;
 					};
 					6BFB93891E1EE7E200737738 = {
@@ -813,7 +814,7 @@
 			baseConfigurationReference = 63DBDC5209676DA9B63108C7 /* Pods-SafeChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3TLYMFKSJH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -835,7 +836,7 @@
 			baseConfigurationReference = 66D35D3AAEB8F0EB3A562577 /* Pods-SafeChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3TLYMFKSJH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

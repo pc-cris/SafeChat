@@ -65,10 +65,7 @@ static dispatch_once_t once_token   = 0;
     return instance;
 }
 
-#pragma mark - 
-#pragma mark - Class methods
-
-+ (NSString*)transformPCASCIIToMessage:(BigInteger*)message {
+- (NSString*)transformPCASCIIToMessage:(NSString*)message {
     
     NSString *stringMessage = [NSString stringWithFormat:@"%@", message];
     NSMutableString *transformedMessage = [NSMutableString new];
@@ -80,9 +77,6 @@ static dispatch_once_t once_token   = 0;
     }
     
     for (i = 0; i < [stringMessage length]; i = i + 3) {
-        if (i + 3 > [stringMessage length] - 1) {
-            return [NSString new];
-        }
     
         NSString *keyChars = [stringMessage substringWithRange: NSMakeRange(i, 3)];
         NSString *character = [[PCLookUpASCIITable sharedInstance] PCTextValueForKey:keyChars];
@@ -94,7 +88,7 @@ static dispatch_once_t once_token   = 0;
     return transformedMessage;
 }
 
-+ (NSString*)decryptMessage:(NSDictionary*)message fromUser:(NSString*)username {
+- (NSString*)decryptMessage:(NSDictionary*)message {
     
     BigInteger *alpha = [message objectForKey:kPCMessageAlphaValueKey];
     BigInteger *beta =  [message objectForKey:kPCMessageBetaValueKey];
@@ -103,9 +97,6 @@ static dispatch_once_t once_token   = 0;
     NSData *privateKeyData = [[NSUserDefaults standardUserDefaults] objectForKey:kPCPrivateKeyNSUserDefaultsKey];
     BigInteger *privateKey = [NSKeyedUnarchiver unarchiveObjectWithData:privateKeyData];
     
-    //JKBigInteger *pMinusOne = [prime subtract:[[JKBigInteger alloc] initWithString:@"1"]];
-    //JKBigInteger *pMinusOneMinusA = [[JKBigInteger alloc] initWithString:@"0"];
-    //pMinusOneMinusA = [pMinusOne subtract:privateKey];
     BigInteger *onePlusA = [privateKey add:[[BigInteger alloc] initWithString:@"1" radix:10]];
     BigInteger *pMinusOneMinusA = [[BigInteger alloc]init];
     pMinusOneMinusA = [prime sub:onePlusA];
@@ -116,7 +107,7 @@ static dispatch_once_t once_token   = 0;
     BigInteger *preM = [prePreM multiply:beta];
     BigInteger *m = [preM multiply:[[BigInteger alloc] initWithString:@"1" radix:10] modulo:prime];
     
-    return [self transformPCASCIIToMessage:m];
+    return [self transformPCASCIIToMessage:[m toRadix:10]];
 }
 
 @end

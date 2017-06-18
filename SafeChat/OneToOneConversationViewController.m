@@ -28,7 +28,7 @@
 
 @property (weak, nonatomic) IBOutlet ChattingView *chattingView;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
-//@property (strong, nonatomic) SBDPreviousMessageListQuery *messageQuery;
+@property (strong, nonatomic) SBDPreviousMessageListQuery *messageQuery;
 @property (strong, nonatomic) NSString *delegateIdentifier;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomMargin;
 @property (weak, nonatomic) IBOutlet UIView *imageViewerLoadingView;
@@ -58,7 +58,15 @@
     // Do any additional setup after loading the view from its nib.
     UILabel *titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 100, 64)];
     //titleView.attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"GroupChannelTitle"], self.channel.memberCount] subTitle:nil];
-    [titleView setText:[[self.channel.members firstObject] userId]];
+    NSString *title = [NSString new];
+    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"safechat.Username"];
+    for (int i = 0; i < [self.channel.members count]; i++) {
+        if (![[self.channel.members[i] userId] isEqualToString:username]){
+            title = [self.channel.members[i] userId];
+        }
+    }
+    
+    [titleView setText:title];
     titleView.numberOfLines = 2;
     titleView.textAlignment = NSTextAlignmentCenter;
     
@@ -81,7 +89,7 @@
     ;
 
     
-    ((UILabel *)self.navItem.titleView).attributedText  = [[NSAttributedString alloc] initWithString:[[self.channel.members firstObject] nickname] attributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:42.0/255.0 green:172.0/255.0 blue:77.0/255.0 alpha:1.0]}];
+    ((UILabel *)self.navItem.titleView).attributedText  = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:42.0/255.0 green:172.0/255.0 blue:77.0/255.0 alpha:1.0]}];
     
     self.navItem.leftBarButtonItems = @[negativeLeftSpacer, leftCloseItem];
     self.navItem.rightBarButtonItems = @[negativeRightSpacer, rightOpenMoreMenuItem];
@@ -338,6 +346,7 @@
         }
     }];
 }
+
 
 - (void)sendUrlPreview:(NSURL * _Nonnull)url message:(NSString * _Nonnull)message tempModel:(OutgoingGeneralUrlPreviewTempModel * _Nonnull)aTempModel {
     __block OutgoingGeneralUrlPreviewTempModel *tempModel = aTempModel;
