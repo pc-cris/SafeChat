@@ -7,6 +7,7 @@
 //
 
 #import "Utils.h"
+#import "DesignConstants.h"
 #import <CommonCrypto/CommonDigest.h>
 
 
@@ -28,18 +29,18 @@
     NSDictionary *subTitleAttribute = nil;
     if (subTitle == nil || subTitle.length == 0) {
         mainTitleAttribute = @{
-                               //NSFontAttributeName: [Constants navigationBarTitleFont],
-                               NSForegroundColorAttributeName: [UIColor blackColor]
+                               NSFontAttributeName: [DesignConstants navigationBarTitleFont],
+                               NSForegroundColorAttributeName: [UIColor colorWithRed:42.0/255.0 green:172.0/255.0 blue:77.0/255.0 alpha:1.0]
                                };
     }
     else {
         mainTitleAttribute = @{
-                              // NSFontAttributeName: [Constants navigationBarTitleFont],
-                               NSForegroundColorAttributeName: [UIColor blackColor]
+                              NSFontAttributeName: [DesignConstants navigationBarTitleFont],
+                               NSForegroundColorAttributeName: [UIColor colorWithRed:42.0/255.0 green:172.0/255.0 blue:77.0/255.0 alpha:1.0]
                                };
         subTitleAttribute = @{
-                              //NSFontAttributeName: [Constants navigationBarSubTitleFont],
-                              //NSForegroundColorAttributeName: [Constants navigationBarSubTitleColor]
+                              NSFontAttributeName: [DesignConstants navigationBarSubTitleFont],
+                              NSForegroundColorAttributeName: [UIColor colorWithRed:42.0/255.0 green:172.0/255.0 blue:77.0/255.0 alpha:1.0]
                               };
     }
     

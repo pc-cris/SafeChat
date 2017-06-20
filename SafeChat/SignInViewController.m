@@ -9,6 +9,8 @@
 #import <SendBirdSDK/SendBirdSDK.h>
 #import "SignInViewController.h"
 #import "UserListViewController.h"
+#import "SafeChatConstantsAndKeys.h"
+#import "EncryptionManager.h"
 
 @interface SignInViewController ()
 
@@ -31,6 +33,7 @@
 @implementation SignInViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.usernameTextField.delegate = self;
     self.passwordTextField.delegate = self;
@@ -38,8 +41,8 @@
     self.usernameLabel.alpha = 0;
     self.passwordLabel.alpha = 0;
 
-    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"safechat.Username"];
-    NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"safechat.Password"];
+    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:kSafeChatUserDefaultsUsernameKey];
+    NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:kSafeChatUserDefaultsPasswordKey];
     
     if (username != nil && username.length > 0) {
         self.usernameLabelBottomConstraint.constant = 0;
@@ -58,9 +61,6 @@
     self.usernameTextField.text = username;
     self.passwordTextField.text = password;
     
-    //[self.signInButton setBackgroundColor:[UIColor greenColor]];
-//
-//    [self.indicatorView setHidesWhenStopped:YES];
     
     [self.usernameTextField addTarget:self action:@selector(usernameTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.passwordTextField addTarget:self action:@selector(passwordTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -79,6 +79,7 @@
 }
 
 - (void)usernameTextFieldDidChange:(UITextField *)sender {
+    
     if (sender.text.length == 0) {
         self.usernameLabelBottomConstraint.constant = -12;
         [self.view setNeedsUpdateConstraints];
@@ -98,6 +99,7 @@
 }
 
 - (void)passwordTextFieldDidChange:(UITextField *)sender {
+    
     if (sender.text.length == 0) {
         self.passwordLabelBottomConstraint.constant = -12;
         [self.view setNeedsUpdateConstraints];
@@ -167,11 +169,12 @@
 #pragma mark - UI Actions
 
 - (IBAction)signInButtonAction:(id)sender {
+    
     NSString *trimmedUsername = [self.usernameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *trimmedPassword = [self.passwordTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (!trimmedUsername.length || !trimmedPassword.length) {
         UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"SafeChat" message:@"Please enter your credentials." preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         }];
         [vc addAction:okAction];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -240,8 +243,9 @@
                     return;
                 }
                 
-                [[NSUserDefaults standardUserDefaults] setObject:[SBDMain getCurrentUser].userId forKey:@"safechat.Username"];
-                [[NSUserDefaults standardUserDefaults] setObject:trimmedPassword forKey:@"safechat.Password"];
+                [[NSUserDefaults standardUserDefaults] setObject:[SBDMain getCurrentUser].userId forKey:kSafeChatUserDefaultsUsernameKey];
+                [[NSUserDefaults standardUserDefaults] setObject:trimmedPassword forKey:kSafeChatUserDefaultsPasswordKey];
+                //[self setupKeysIfNecessary];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     UserListViewController *vc = [[UserListViewController alloc] init];
@@ -253,10 +257,23 @@
 
 }
 
+- (void)setupKeysIfNecessary {
+    
+    if(![[[NSUserDefaults standardUserDefaults]valueForKey:kSafeChatUserDefaultsDidSendInitialKeyToFirebaseKey] isEqualToString:@"sent"]) {
+        NSDictionary *publicKeys = [[EncryptionManager sharedInstance] generateKeysUsePregenerated:YES];
+        NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:kSafeChatUserDefaultsUsernameKey];
+        BOOL didSend = [[EncryptionManager sharedInstance] setUserPublicKeys:publicKeys user:user];
+        if (didSend) {
+            [[NSUserDefaults standardUserDefaults] setObject:@"sent" forKey:kSafeChatUserDefaultsDidSendInitialKeyToFirebaseKey];
+        }
+    }
+}
+
 #pragma mark -
 #pragma mark - Keyboard delegate methods
 
 - (void)keyboardDidShow:(NSNotification *)notification {
+    
     self.keyboardShown = YES;
     NSDictionary* keyboardInfo = [notification userInfo];
     NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
@@ -264,16 +281,15 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.bottomConstraint.constant = keyboardFrameBeginRect.size.height;
         [self.view layoutIfNeeded];
-        //[self.tableView scroll:NO];
     });
 }
 
 - (void)keyboardDidHide:(NSNotification *)notification {
+    
     self.keyboardShown = NO;
     dispatch_async(dispatch_get_main_queue(), ^{
         self.bottomConstraint.constant = 0;
         [self.view layoutIfNeeded];
-        //[self.chattingView scrollToBottomWithForce:NO];
     });
 }
 

@@ -8,6 +8,9 @@
 
 #import "EncryptionManager.h"
 
+//testing
+#import "SafeChatConstantsAndKeys.h"
+
 static EncryptionManager *instance   = nil;
 static dispatch_once_t once_token   = 0;
 
@@ -77,45 +80,8 @@ static dispatch_once_t once_token   = 0;
 
 - (BOOL)setUserPublicKeys:(NSDictionary*)keys user:(NSString*)user {
     
-    //send to firebase
-    //send them to firebase server
-    //With Firebase, the key is a URL and the value is arbitrary data that could be a number, string, boolean or object.
-    //let ref = FIRDatabase.database().reference(withPath: "user-public-keys") -> json root
-    //it will look like:
-    
-    // The root of the tree
-    //    {
-    //        // grocery-items
-    //        "grocery-items": {
     //
-    //            // grocery-items/milk
-    //            "milk": {
-    //
-    //                // grocery-items/milk/name
-    //                "name": "Milk",
-    //
-    //                // grocery-items/milk/addedByUser
-    //                "addedByUser": "David"
-    //            },
-    //
-    //            "pizza": {
-    //                "name": "Pizza",
-    //                "addedByUser": "Alice"
-    //            },
-    //        }
-    //    }
-    //https://www.raywenderlich.com/139322/firebase-tutorial-getting-started-2
-    //    let groceryItemRef = self.ref.child(text.lowercased()) - create a new child node -> we will use the username of the current user for this
-    //
-    //    // 4
-    //    groceryItemRef.setValue(groceryItem.toAnyObject()) -  set the dictionary directly to save it to the db
-    
-    
-    //refHandle = [_postRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-    //    NSDictionary *postDict = snapshot.value;
-    //    // ...
-    //}];
-
+    //TODO: in firebase and userdefaults -> will keep a default value used after the initial creation of the channel and then specific keys for each user: when entering the channel and wanting to read msgs - check in firebase if there is a key associated to that user: if no, use default, if yes, use that one; similarly, when we want to press the send button, check of there is a key associated to our channel: if yes, use it, if no, use default
     return YES;
 }
 
@@ -135,6 +101,36 @@ static dispatch_once_t once_token   = 0;
 - (NSString*)decryptText:(NSDictionary*)text {
     
     return [[PCDecryptor sharedInstance] decryptMessage:text];
+}
+
+//testing
+- (void)generateKeysForTest {
+    //[[PCBigNoGenerator sharedInstance] generateKeysAndExposePublicKeysOrUsePregenerated:YES];
+        //if(![[[NSUserDefaults standardUserDefaults] valueForKey:kSafeChatUserDefaultsDidSendInitialKeyToFirebaseKey] isEqualToString:@"sent"]) {
+    BigInteger *privateKey = [[BigInteger alloc] initWithString:@"362008909771623727288212548032952239534395259800083419916" radix:10];
+    BigInteger *primeNoKey = [[BigInteger alloc] initWithString:@"66853100275505147362599371325426178636949375166353934946040721080556341318514708808465558967444221878827459081686112246933519808328109817949203457716432893" radix:10];
+    BigInteger *generatorKey = [[BigInteger alloc] initWithString:@"2" radix:10];
+    BigInteger *thirdKey = [[BigInteger alloc] initWithString:@"27798465687732811764014863005962536388344562483507054993238327504860327962877040525147627927428627707065827163172661367152875187880952610230066501850572137" radix:10];
+    
+    self.testKeys = @{
+                      kPCPrivateKeyNSUserDefaultsKey:privateKey,
+                      kPCPublicKeyPrimeNumberKey:primeNoKey,
+                          kPCPublicKeyGeneratorKey:generatorKey,
+                          kPCPublicKeyGMultiplyingRuleKey:thirdKey
+                      };
+    
+    NSData *privateKeyData = [NSKeyedArchiver archivedDataWithRootObject:privateKey];
+    [[NSUserDefaults standardUserDefaults] setObject:privateKeyData forKey:kPCPrivateKeyNSUserDefaultsKey];
+    
+    NSData *keyData =       [NSKeyedArchiver archivedDataWithRootObject:primeNoKey];
+    [[NSUserDefaults standardUserDefaults] setObject:keyData       forKey:kPCPublicKeyPrimeNumberKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+//            //NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:kSafeChatUserDefaultsUsernameKey];
+            //BOOL didSend = [[EncryptionManager sharedInstance] setUserPublicKeys:publicKeys user:user];
+            //if (didSend) {
+             //   [[NSUserDefaults standardUserDefaults] setObject:@"sent" forKey:kSafeChatUserDefaultsDidSendInitialKeyToFirebaseKey];
+           // }
+        //}
 }
 
 @end

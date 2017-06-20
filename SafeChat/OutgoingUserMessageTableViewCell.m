@@ -8,6 +8,11 @@
 
 #import "OutgoingUserMessageTableViewCell.h"
 #import "DesignConstants.h"
+#import "PCConstantsAndKeys.h"
+#import "SafeChatConstantsAndKeys.h"
+
+//teeest
+#import "EncryptionManager.h"
 
 @interface OutgoingUserMessageTableViewCell()
 
@@ -223,8 +228,10 @@
                                        NSFontAttributeName: [DesignConstants messageFont],
                                        NSForegroundColorAttributeName: [DesignConstants outgoingMessageColor],
                                        };
+
     
-    NSString *message = self.message.message;
+    //NSString *message = self.message.message;
+    NSString *message = [[NSUserDefaults standardUserDefaults] valueForKey:kSafeChatUserDefaultsLastMessageSent];
     
     NSMutableAttributedString *fullMessage = [[NSMutableAttributedString alloc] initWithString:message];
     

@@ -22,4 +22,7 @@
 - (NSDictionary*)encryptText:(NSString*)text usingGeneratedKeys:(NSDictionary*)keys;
 - (NSString*)decryptText:(NSDictionary*)text;
 
+-(void)generateKeysForTest;
+@property(nonatomic, strong)NSDictionary *testKeys;
+
 @end

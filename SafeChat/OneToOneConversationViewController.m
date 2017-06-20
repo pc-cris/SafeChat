@@ -13,16 +13,15 @@
 #import <Photos/Photos.h>
 #import <NYTPhotoViewer/NYTPhotosViewController.h>
 #import <HTMLKit/HTMLKit.h>
-
 #import "AppDelegate.h"
-//#import "GroupChannelChattingViewController.h"
-//#import "MemberListViewController.h"
-//#import "BlockedUserListViewController.h"
-//#import "NSBundle+SendBird.h"
+#import "ConversationMemberInformationViewController.h"
 #import "Utils.h"
+#import "SafeChatConstantsAndKeys.h"
 #import "ChatImage.h"
 #import "FLAnimatedImageView+ImageCache.h"
 #import "OneToOneConversationViewController.h"
+#import "EncryptionManager.h"
+#import "PCConstantsAndKeys.h"
 
 @interface OneToOneConversationViewController ()
 
@@ -49,6 +48,8 @@
 @property (strong, nonatomic) NSArray<SBDBaseMessage *> *dumpedMessages;
 @property (atomic) BOOL cachedMessage;
 
+@property (nonatomic, strong) NSString *partnerUsername;
+
 @end
 
 @implementation OneToOneConversationViewController
@@ -59,10 +60,11 @@
     UILabel *titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 100, 64)];
     //titleView.attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"GroupChannelTitle"], self.channel.memberCount] subTitle:nil];
     NSString *title = [NSString new];
-    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"safechat.Username"];
+    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:kSafeChatUserDefaultsUsernameKey];
     for (int i = 0; i < [self.channel.members count]; i++) {
         if (![[self.channel.members[i] userId] isEqualToString:username]){
             title = [self.channel.members[i] userId];
+            self.partnerUsername = title;
         }
     }
     
@@ -216,28 +218,18 @@
 
 - (void)openMoreMenu {
     UIAlertController *vc = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-//    UIAlertAction *seeMemberListAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"SeeMemberListButton"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            MemberListViewController *mlvc = [[MemberListViewController alloc] init];
-//            [mlvc setChannel:self.channel];
-//            self.refreshInViewDidAppear = NO;
-//            [self presentViewController:mlvc animated:NO completion:nil];
-//        });
-//    }];
-//    
-//    UIAlertAction *inviteUserListAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"InviteUserButton"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            CreateGroupChannelUserListViewController *vc = [[CreateGroupChannelUserListViewController alloc] init];
-//            vc.userSelectionMode = 1;
-//            vc.groupChannel = self.channel;
-//            self.refreshInViewDidAppear = NO;
-//            [self presentViewController:vc animated:NO completion:nil];
-//        });
-//    }];
+    UIAlertAction *seeMemberListAction = [UIAlertAction actionWithTitle:@"Contact Info" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            ConversationMemberInformationViewController *mlvc = [[ConversationMemberInformationViewController alloc] init];
+            [mlvc setChannel:self.channel];
+            self.refreshInViewDidAppear = NO;
+            [self presentViewController:mlvc animated:NO completion:nil];
+        });
+    }];
+    
     
     UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
-   // [vc addAction:seeMemberListAction];
-   // [vc addAction:inviteUserListAction];
+    [vc addAction:seeMemberListAction];
     [vc addAction:closeAction];
     
     [self presentViewController:vc animated:YES completion:nil];
@@ -536,6 +528,7 @@
 }
 
 - (void)sendMessageWithReplacement:(OutgoingGeneralUrlPreviewTempModel * _Nonnull)replacement {
+    
     SBDUserMessage *preSendMessage = [self.channel sendUserMessage:replacement.message data:@"" customType:@"" targetLanguages:@[@"ar", @"de", @"fr", @"nl", @"ja", @"ko", @"pt", @"es", @"zh-CHS"] completionHandler:^(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(150 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
             SBDUserMessage *preSendMessage = (SBDUserMessage *)self.chattingView.preSendMessages[userMessage.requestId];
@@ -572,7 +565,26 @@
 }
 
 - (void)sendMessage {
+    
     if (self.chattingView.messageTextView.text.length > 0) {
+        
+        if(self.chattingView.messageTextView.text.length > kSafeChatMaximumMessageLength) {
+            UIAlertController *maxLenALert = [UIAlertController
+                                              alertControllerWithTitle:@"Too long"
+                                              message:@"Your message is too long. Please write less than 50 characters."
+                                              preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction
+                                       actionWithTitle:@"OK"
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction * _Nonnull action) {
+                                       }];
+            [maxLenALert addAction:okAction];
+            
+            [self presentViewController:maxLenALert animated:YES completion:^{
+            }];
+            return;
+        }
+        
         [self.channel endTyping];
         NSString *message = [self.chattingView.messageTextView.text copy];
         self.chattingView.messageTextView.text = @"";
@@ -607,8 +619,21 @@
             }
         }
         
+        
+        //TESSSTTT
+        
+        [[NSUserDefaults standardUserDefaults] setObject:message forKey:kSafeChatUserDefaultsLastMessageSent];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        //[[EncryptionManager sharedInstance] generateKeysForTest];
+        NSDictionary *encrMsg = [[EncryptionManager sharedInstance] encryptText:message usingGeneratedKeys:[EncryptionManager sharedInstance].testKeys];
+        NSString *encryptedMsgAsString = [NSString stringWithFormat:@"%@;%@", [encrMsg valueForKey:kPCMessageAlphaValueKey], [encrMsg valueForKey:kPCMessageBetaValueKey]];
+        
+        ///////////////mai jos era : message in loc de encryptedMsgAsString
+        
         self.chattingView.sendButton.enabled = NO;
-        SBDUserMessage *preSendMessage = [self.channel sendUserMessage:message data:@"" customType:@"" targetLanguages:@[@"ar", @"de", @"fr", @"nl", @"ja", @"ko", @"pt", @"es", @"zh-CHS"] completionHandler:^(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error) {
+        
+        SBDUserMessage *preSendMessage = [self.channel sendUserMessage:encryptedMsgAsString data:@"" customType:@"" targetLanguages:@[@"ar", @"de", @"fr", @"nl", @"ja", @"ko", @"pt", @"es", @"zh-CHS"] completionHandler:^(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 SBDUserMessage *preSendMessage = (SBDUserMessage *)self.chattingView.preSendMessages[userMessage.requestId];
                 [self.chattingView.preSendMessages removeObjectForKey:userMessage.requestId];
@@ -626,7 +651,19 @@
                 NSIndexPath *index = [NSIndexPath indexPathForRow:[self.chattingView.messages indexOfObject:preSendMessage] inSection:0];
                 [self.chattingView.chattingTableView beginUpdates];
                 if (preSendMessage != nil) {
-                    [self.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:preSendMessage] withObject:userMessage];
+                    //DECRYPT - test
+                    /////
+//                    NSArray *elems = [preSendMessage.message componentsSeparatedByString:@";"];
+//                    NSDictionary *dict = @{
+//                                           kPCMessageAlphaValueKey: elems[0],
+//                                           kPCMessageBetaValueKey: elems[1]
+//                                           };
+//                    
+//                    
+//                    userMessage.message  = [[EncryptionManager sharedInstance] decryptText:dict];
+//                    //////
+                    
+                [self.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:preSendMessage] withObject:userMessage];
                 }
                 [UIView setAnimationsEnabled:NO];
                 
@@ -641,10 +678,26 @@
         }];
         
         self.chattingView.preSendMessages[preSendMessage.requestId] = preSendMessage;
+        
+        //DECRYPT-TEST
+//        NSArray *elems = [preSendMessage.message componentsSeparatedByString:@";"];
+//        BigInteger *a = [[BigInteger alloc] initWithString:elems[0] radix:10];
+//        BigInteger *b = [[BigInteger alloc] initWithString:elems[1] radix:10];
+//        NSDictionary *dict = @{
+//                               kPCMessageAlphaValueKey: a,
+//                               kPCMessageBetaValueKey: b
+//                               };
+//        
+//        NSString *smth = [[EncryptionManager sharedInstance] decryptText:dict];
+//        
+ //       preSendMessage.message  = smth;
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             if (self.chattingView.preSendMessages[preSendMessage.requestId] == nil) {
                 return;
             }
+          
+            
             [self.chattingView.chattingTableView beginUpdates];
             [self.chattingView.messages addObject:preSendMessage];
             
@@ -663,6 +716,7 @@
 }
 
 - (void)sendFileMessage {
+    
     UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
     mediaUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     NSMutableArray *mediaTypes = [[NSMutableArray alloc] initWithObjects:(NSString *)kUTTypeImage, (NSString *)kUTTypeMovie, nil];
@@ -673,6 +727,7 @@
 }
 
 - (void)clickReconnect {
+    
     if ([SBDMain getConnectState] != SBDWebSocketOpen && [SBDMain getConnectState] != SBDWebSocketConnecting) {
         [SBDMain reconnect];
     }
@@ -681,26 +736,29 @@
 #pragma mark - SBDConnectionDelegate
 
 - (void)didStartReconnection {
+    
     if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:@"Group members: %lu", (unsigned long)self.channel.memberCount] subTitle:@"Reconnecting"];
-        });
+            ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:@"%@", self.partnerUsername] subTitle:@"Reconnecting"];
+            });
     }
 }
 
 - (void)didSucceedReconnection {
+    
     [self loadPreviousMessage:YES];
     
     [self.channel refreshWithCompletionHandler:^(SBDError * _Nullable error) {
         if (error == nil) {
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
-                    ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:@"Group members: %lu", (unsigned long)self.channel.memberCount] subTitle:@"Reconnected"];
+                    ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:@"%@", self.partnerUsername] subTitle:@"Reconnected"];
                 }
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1000 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
                     if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
-                        ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:@"Group members: %lu", (unsigned long)self.channel.memberCount] subTitle:@""];
+                        ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:@"%@", self.partnerUsername] subTitle:@""];
                     }
                 });
             });
@@ -709,9 +767,10 @@
 }
 
 - (void)didFailReconnection {
+    
     if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:@"Group members: %lu", (unsigned long)self.channel.memberCount] subTitle:@"Reconnecting failed"];
+            ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:@"%@", self.partnerUsername] subTitle:@"Reconnecting failed"];
         });
     }
 }
@@ -719,7 +778,10 @@
 #pragma mark - SBDChannelDelegate
 
 - (void)channel:(SBDBaseChannel * _Nonnull)sender didReceiveMessage:(SBDBaseMessage * _Nonnull)message {
+    
     if (sender == self.channel) {
+        
+        
         [self.channel markAsRead];
         
         [self.chattingView.messages addObject:message];
@@ -733,6 +795,7 @@
 }
 
 - (void)channelDidUpdateReadReceipt:(SBDGroupChannel * _Nonnull)sender {
+    
     if (sender == self.channel) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.chattingView.chattingTableView reloadData];
@@ -741,6 +804,7 @@
 }
 
 - (void)channelDidUpdateTypingStatus:(SBDGroupChannel * _Nonnull)sender {
+    
     if (sender == self.channel) {
         if (sender.getTypingMembers.count == 0) {
             [self.chattingView endTypingIndicator];
@@ -757,6 +821,7 @@
 }
 
 - (void)channel:(SBDGroupChannel * _Nonnull)sender userDidJoin:(SBDUser * _Nonnull)user {
+    
     if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
         dispatch_async(dispatch_get_main_queue(), ^{
             ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:@"Channel members: %lu", self.channel.memberCount] subTitle:nil];
@@ -765,6 +830,7 @@
 }
 
 - (void)channel:(SBDGroupChannel * _Nonnull)sender userDidLeave:(SBDUser * _Nonnull)user {
+    
     if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
         dispatch_async(dispatch_get_main_queue(), ^{
             ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:@"Channel members: %lu", self.channel.memberCount] subTitle:nil];
@@ -805,6 +871,7 @@
 }
 
 - (void)channelWasChanged:(SBDBaseChannel * _Nonnull)sender {
+    
     if (sender == self.channel) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.navItem.title = [NSString stringWithFormat:@"Group channel members: %lu", self.channel.memberCount];
@@ -813,6 +880,7 @@
 }
 
 - (void)channelWasDeleted:(NSString * _Nonnull)channelUrl channelType:(SBDChannelType)channelType {
+    
     UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Channel deleted" message:@"This channel was deleted." preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         [self close];
@@ -824,6 +892,7 @@
 }
 
 - (void)channel:(SBDBaseChannel * _Nonnull)sender messageWasDeleted:(long long)messageId {
+    
     if (sender == self.channel) {
         for (SBDBaseMessage *message in self.chattingView.messages) {
             if (message.messageId == messageId) {
@@ -838,7 +907,9 @@
 }
 
 #pragma mark - ChattingViewDelegate
+
 - (void)loadMoreMessage:(UIView *)view {
+    
     if (self.cachedMessage) {
         return;
     }
@@ -847,14 +918,17 @@
 }
 
 - (void)startTyping:(UIView *)view {
+    
     [self.channel startTyping];
 }
 
 - (void)endTyping:(UIView *)view {
+    
     [self.channel endTyping];
 }
 
 - (void)hideKeyboardWhenFastScrolling:(UIView *)view {
+    
     if (self.keyboardShown == NO) {
         return;
     }
@@ -868,42 +942,19 @@
 }
 
 #pragma mark - MessageDelegate
+
 - (void)clickProfileImage:(UITableViewCell *)viewCell user:(SBDUser *)user {
+    
     UIAlertController *vc = [UIAlertController alertControllerWithTitle:user.nickname message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-//    UIAlertAction *seeBlockUserAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"BlockUserButton"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        [SBDMain blockUser:user completionHandler:^(SBDUser * _Nullable blockedUser, SBDError * _Nullable error) {
-//            if (error != nil) {
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-//                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
-//                    [vc addAction:closeAction];
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        [self presentViewController:vc animated:YES completion:nil];
-//                    });
-//                });
-//                
-//                return;
-//            }
-//            
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"UserBlockedTitle"] message:[NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"UserBlockedMessage"], user.nickname] preferredStyle:UIAlertControllerStyleAlert];
-//                UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
-//                [vc addAction:closeAction];
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [self presentViewController:vc animated:YES completion:nil];
-//                });
-//            });
-//        }];
-//        
-//    }];
+
     UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
-//    [vc addAction:seeBlockUserAction];
     [vc addAction:closeAction];
     
     [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)clickMessage:(UIView *)view message:(SBDBaseMessage *)message {
+    
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *deleteMessageAction = nil;
@@ -1099,6 +1150,7 @@
 }
 
 - (void)clickResend:(UIView *)view message:(SBDBaseMessage *)message {
+    
     UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Resend failed" message:@"Resending message failed" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *resendAction = [UIAlertAction actionWithTitle:@"Resend message" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -1256,8 +1308,9 @@
 }
 
 #pragma mark - UIImagePickerControllerDelegate
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
     NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
     __weak OneToOneConversationViewController *weakSelf = self;
     [picker dismissViewControllerAnimated:YES completion:^{
@@ -1405,6 +1458,7 @@
 }
 
 - (void)showImageViewerLoading {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         self.imageViewerLoadingView.hidden = NO;
         self.imageViewerLoadingIndicator.hidden = NO;
@@ -1413,6 +1467,7 @@
 }
 
 - (void)hideImageViewerLoading {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         self.imageViewerLoadingView.hidden = YES;
         self.imageViewerLoadingIndicator.hidden = YES;
@@ -1421,6 +1476,7 @@
 }
 
 - (void)closeImageViewer {
+    
     if (self.photosViewController != nil) {
         [self.photosViewController dismissViewControllerAnimated:YES completion:nil];
     }

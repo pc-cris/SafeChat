@@ -10,6 +10,10 @@
 #import <SendBirdSDK/SendBirdSDK.h>
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
+
+//test
+#import "EncryptionManager.h"
+
 @import Firebase;
 
 @interface AppDelegate ()
@@ -52,7 +56,7 @@
             NSLog(@"Set Audio Session error: %@", error);
         }
     }
-
+    [[EncryptionManager sharedInstance] generateKeysForTest];
     return YES;
 }
 

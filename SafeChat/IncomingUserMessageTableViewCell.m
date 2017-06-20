@@ -9,6 +9,8 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
 #import "IncomingUserMessageTableViewCell.h"
+#import "PCConstantsAndKeys.h"
+#import "EncryptionManager.h"
 #import "DesignConstants.h"
 
 @interface IncomingUserMessageTableViewCell()
@@ -257,7 +259,36 @@
                                        };
     
     NSString *nickname = self.message.sender.nickname;
-    NSString *message = self.message.message;
+    
+    
+    //TODO - must DECRYPT HERE (INCOMING MSGS) !!! IN ORDER TO SEE THEM
+    NSString *message;
+    
+    NSArray *elems = [self.message.message componentsSeparatedByString:@";"];
+    
+    if ([elems count] != 2) {
+        message = @"Invalid";
+        
+    } else {
+        
+        NSString *nrOne = elems[0];
+        NSString *nrtwo = elems[1];
+        
+        BigInteger *finalA = [[BigInteger alloc] initWithString:nrOne radix:10];
+        BigInteger *finalB = [[BigInteger alloc] initWithString:nrtwo radix:10];
+        
+        NSDictionary *dict = @{
+                               kPCMessageAlphaValueKey: finalA,
+                               kPCMessageBetaValueKey: finalB
+                               };
+        
+        
+        NSString *txt  = [[EncryptionManager sharedInstance] decryptText:dict];
+        message = txt;
+    }
+    
+    
+    //NSString *message = self.message.message;
     
     NSMutableAttributedString *fullMessage = nil;
     if (self.displayNickname) {

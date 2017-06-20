@@ -100,8 +100,8 @@ static dispatch_once_t once_token   = 0;
     BigInteger *alpha = [self computeAlphaWithGValue:generator andKValue:random andPValue:prime];
     BigInteger *beta = [self computeBetaWithMValue:[self transformMessageToPCASCII:message] andGAValue:avalue andKValue:random andPValue:prime];
     
-    NSDictionary *encryptedMessage = @{ kPCMessageAlphaValueKey:alpha,
-                                          kPCMessageBetaValueKey:beta
+    NSDictionary *encryptedMessage = @{ kPCMessageAlphaValueKey:[alpha toRadix:10],
+                                          kPCMessageBetaValueKey:[beta toRadix:10]
                                         };
     
     return encryptedMessage;

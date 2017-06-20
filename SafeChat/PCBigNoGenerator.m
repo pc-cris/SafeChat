@@ -179,10 +179,12 @@ static NSString *primeNoLastDigits        = @"1379";
 - (BigInteger*)generateRandomNumberOfRandomSize {
     
     unsigned int size = 0;
-    BOOL isZero = NO;
-    while (!isZero) {
+    BOOL isZero = YES;
+    while (isZero) {
         size = arc4random_uniform((uint32_t) KeyDigitLength);
-        isZero = (size == 0);
+        if (size != 0) {
+            isZero = NO;
+        }
     }
     
     NSString *stringNo = [self generateRandomDigitNumberWithSize:size];

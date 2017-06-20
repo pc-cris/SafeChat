@@ -202,10 +202,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         OneToOneConversationViewController *conv = [[OneToOneConversationViewController alloc] init];
         conv.channel = channel;
-        //vc.channel = channel;
-        //GroupChannelChattingViewController *vc = [[GroupChannelChattingViewController alloc] init];
-        //vc.channel = channel;
-        //UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:conv];
         [self presentViewController:conv animated:NO completion:nil];
     });
 }

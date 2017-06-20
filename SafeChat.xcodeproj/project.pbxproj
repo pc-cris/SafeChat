@@ -53,6 +53,11 @@
 		6B2E44981E6375EE00920514 /* UserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2E44961E6375EE00920514 /* UserListTableViewCell.m */; };
 		6B2E44991E6375EE00920514 /* UserListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B2E44971E6375EE00920514 /* UserListTableViewCell.xib */; };
 		6B46D5071E8849BE00387C85 /* README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6B46D5061E8849BE00387C85 /* README.rtf */; };
+		6B8FA4051EF8532E00CB4531 /* SafeChatConstantsAndKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8FA4041EF8532E00CB4531 /* SafeChatConstantsAndKeys.m */; };
+		6B8FA4091EF8754300CB4531 /* ConversationMemberInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8FA4071EF8754300CB4531 /* ConversationMemberInformationViewController.m */; };
+		6B8FA40A1EF8754300CB4531 /* ConversationMemberInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B8FA4081EF8754300CB4531 /* ConversationMemberInformationViewController.xib */; };
+		6B8FA40E1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8FA40C1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.m */; };
+		6B8FA40F1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B8FA40D1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.xib */; };
 		6BF2EAF21E2C20C300053FE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BF2EAF11E2C20C300053FE7 /* GoogleService-Info.plist */; };
 		6BF2EAF31E2C20C300053FE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BF2EAF11E2C20C300053FE7 /* GoogleService-Info.plist */; };
 		6BF541CD1EE88FD30016969E /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF541CB1EE88FD30016969E /* UserProfileViewController.m */; };
@@ -165,6 +170,14 @@
 		6B2E44961E6375EE00920514 /* UserListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListTableViewCell.m; sourceTree = "<group>"; };
 		6B2E44971E6375EE00920514 /* UserListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserListTableViewCell.xib; sourceTree = "<group>"; };
 		6B46D5061E8849BE00387C85 /* README.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
+		6B8FA4031EF8532E00CB4531 /* SafeChatConstantsAndKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeChatConstantsAndKeys.h; sourceTree = "<group>"; };
+		6B8FA4041EF8532E00CB4531 /* SafeChatConstantsAndKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeChatConstantsAndKeys.m; sourceTree = "<group>"; };
+		6B8FA4061EF8754300CB4531 /* ConversationMemberInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationMemberInformationViewController.h; sourceTree = "<group>"; };
+		6B8FA4071EF8754300CB4531 /* ConversationMemberInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationMemberInformationViewController.m; sourceTree = "<group>"; };
+		6B8FA4081EF8754300CB4531 /* ConversationMemberInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConversationMemberInformationViewController.xib; sourceTree = "<group>"; };
+		6B8FA40B1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationMemberInformationTableViewCell.h; sourceTree = "<group>"; };
+		6B8FA40C1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationMemberInformationTableViewCell.m; sourceTree = "<group>"; };
+		6B8FA40D1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConversationMemberInformationTableViewCell.xib; sourceTree = "<group>"; };
 		6BF2EAF11E2C20C300053FE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6BF541CA1EE88FD30016969E /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		6BF541CB1EE88FD30016969E /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
@@ -273,6 +286,9 @@
 				6B2E44951E6375EE00920514 /* UserListTableViewCell.h */,
 				6B2E44961E6375EE00920514 /* UserListTableViewCell.m */,
 				6B2E44971E6375EE00920514 /* UserListTableViewCell.xib */,
+				6B8FA40B1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.h */,
+				6B8FA40C1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.m */,
+				6B8FA40D1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.xib */,
 			);
 			name = Cells;
 			path = SafeChat;
@@ -325,6 +341,9 @@
 				6BF541CA1EE88FD30016969E /* UserProfileViewController.h */,
 				6BF541CB1EE88FD30016969E /* UserProfileViewController.m */,
 				6BF541CC1EE88FD30016969E /* UserProfileViewController.xib */,
+				6B8FA4061EF8754300CB4531 /* ConversationMemberInformationViewController.h */,
+				6B8FA4071EF8754300CB4531 /* ConversationMemberInformationViewController.m */,
+				6B8FA4081EF8754300CB4531 /* ConversationMemberInformationViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -350,6 +369,8 @@
 		6BFB93651E1EE7E200737738 = {
 			isa = PBXGroup;
 			children = (
+				6B8FA4031EF8532E00CB4531 /* SafeChatConstantsAndKeys.h */,
+				6B8FA4041EF8532E00CB4531 /* SafeChatConstantsAndKeys.m */,
 				6B46D5061E8849BE00387C85 /* README.rtf */,
 				6BF2EAF11E2C20C300053FE7 /* GoogleService-Info.plist */,
 				6B0396941EF547A300F06994 /* BigInteger.h */,
@@ -525,8 +546,10 @@
 				6B03B3ED1EB7B71D004529FA /* OutgoingGeneralUrlPreviewMessageTableViewCell.xib in Resources */,
 				6B2E44941E63468E00920514 /* UserListViewController.xib in Resources */,
 				6BFB93811E1EE7E200737738 /* Assets.xcassets in Resources */,
+				6B8FA40F1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.xib in Resources */,
 				6B03B3D41EB7A374004529FA /* OutgoingFileMessageTableViewCell.xib in Resources */,
 				5A66043C1E9631AD00D58149 /* ChattingView.xib in Resources */,
+				6B8FA40A1EF8754300CB4531 /* ConversationMemberInformationViewController.xib in Resources */,
 				6B03B3F21EB7BAAD004529FA /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib in Resources */,
 				6B03B3C71EB7947D004529FA /* IncomingFileMessageTableViewCell.xib in Resources */,
 				5A4D8A001E9FCA9900DA7953 /* OutgoingUserMessageTableViewCell.xib in Resources */,
@@ -648,6 +671,7 @@
 				6BF541CD1EE88FD30016969E /* UserProfileViewController.m in Sources */,
 				6BFB93AD1E1EF90A00737738 /* SignInViewController.m in Sources */,
 				6B03B3DD1EB7AA89004529FA /* IncomingVideoFileMessageTableViewCell.m in Sources */,
+				6B8FA40E1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.m in Sources */,
 				6B0396A21EF54C7800F06994 /* PCDecryptor.m in Sources */,
 				5A4D89F51E9FC10700DA7953 /* OutgoingGeneralUrlPreviewTempModel.m in Sources */,
 				5A4D89FA1E9FC71B00DA7953 /* IncomingUserMessageTableViewCell.m in Sources */,
@@ -659,12 +683,14 @@
 				5A4D89FF1E9FCA9900DA7953 /* OutgoingUserMessageTableViewCell.m in Sources */,
 				6B03B3BD1EB76CE1004529FA /* DesignConstants.m in Sources */,
 				6B0396A41EF54C7800F06994 /* PCLookUpASCIITable.m in Sources */,
+				6B8FA4051EF8532E00CB4531 /* SafeChatConstantsAndKeys.m in Sources */,
 				5A66043A1E962CBF00D58149 /* ChattingView.m in Sources */,
 				6B0F35C51E91A7C200918C2A /* OneToOneConversationViewController.m in Sources */,
 				6B2E44931E63468E00920514 /* UserListViewController.m in Sources */,
 				6B03B3D31EB7A374004529FA /* OutgoingFileMessageTableViewCell.m in Sources */,
 				6B0396981EF54C5700F06994 /* PCBigNoGenerator.m in Sources */,
 				6B03B3EC1EB7B71D004529FA /* OutgoingGeneralUrlPreviewMessageTableViewCell.m in Sources */,
+				6B8FA4091EF8754300CB4531 /* ConversationMemberInformationViewController.m in Sources */,
 				6B03B3CB1EB79990004529FA /* OutgoingImageFileMessageTableViewCell.m in Sources */,
 				6B03B3F51EB7BDE9004529FA /* FLAnimatedImageView+ImageCache.m in Sources */,
 				6BFB937F1E1EE7E200737738 /* SafeChat.xcdatamodeld in Sources */,
