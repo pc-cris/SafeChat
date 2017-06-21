@@ -15,6 +15,10 @@
 
 #define kSafeChatMaximumMessageLength                         50
 
+#define kSafeChatFirebaseRootUser                             @"users"
+#define kSafeChatFirebaseDefaultKeys                          @"defaultKeys"
+
+
 @interface SafeChatConstantsAndKeys : NSObject
 
 @end

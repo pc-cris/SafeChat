@@ -260,12 +260,12 @@
 - (void)setupKeysIfNecessary {
     
     if(![[[NSUserDefaults standardUserDefaults]valueForKey:kSafeChatUserDefaultsDidSendInitialKeyToFirebaseKey] isEqualToString:@"sent"]) {
-        NSDictionary *publicKeys = [[EncryptionManager sharedInstance] generateKeysUsePregenerated:YES];
+        //NSDictionary *publicKeys = [[EncryptionManager sharedInstance] generateKeysUsePregenerated:YES];
         NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:kSafeChatUserDefaultsUsernameKey];
-        BOOL didSend = [[EncryptionManager sharedInstance] setUserPublicKeys:publicKeys user:user];
-        if (didSend) {
-            [[NSUserDefaults standardUserDefaults] setObject:@"sent" forKey:kSafeChatUserDefaultsDidSendInitialKeyToFirebaseKey];
-        }
+        //BOOL didSend = [[EncryptionManager sharedInstance] setUserPublicKeys:publicKeys user:user];
+//        if (didSend) {
+//            [[NSUserDefaults standardUserDefaults] setObject:@"sent" forKey:kSafeChatUserDefaultsDidSendInitialKeyToFirebaseKey];
+//        }
     }
 }
 

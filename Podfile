@@ -7,6 +7,7 @@ target 'SafeChat' do
 
   # Pods for SafeChat
   pod ‘Firebase’
+  pod ‘Firebase/Database’
  
   # Pods for AFNetworking
   source 'https://github.com/CocoaPods/Specs.git'
