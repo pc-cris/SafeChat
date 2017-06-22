@@ -620,14 +620,26 @@
         }
         
         
-        //TESSSTTT
+        //TODO: TESSSTTT
         
         [[NSUserDefaults standardUserDefaults] setObject:message forKey:kSafeChatUserDefaultsLastMessageSent];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        ///
         
         //[[EncryptionManager sharedInstance] generateKeysForTest];
-        NSDictionary *encrMsg = [[EncryptionManager sharedInstance] encryptText:message usingGeneratedKeys:[EncryptionManager sharedInstance].testKeys];
+        
+        //TODO: test firebase get keys
+        NSString *myName = [[NSUserDefaults standardUserDefaults] valueForKey:kSafeChatUserDefaultsUsernameKey];
+        NSDictionary *receiverKeys = [[EncryptionManager sharedInstance] getReceiverPublicKeys:_partnerUsername forUsername:myName];
+        
+        NSDictionary *encrMsg = [[EncryptionManager sharedInstance] encryptText:message usingGeneratedKeys:receiverKeys];
+        
+        
         NSString *encryptedMsgAsString = [NSString stringWithFormat:@"%@;%@", [encrMsg valueForKey:kPCMessageAlphaValueKey], [encrMsg valueForKey:kPCMessageBetaValueKey]];
+        
+        NSDictionary *myUpdatedKeys = [[EncryptionManager sharedInstance] testKeys];
+        
+        [[EncryptionManager sharedInstance] setUserPublicKeys:myUpdatedKeys user:myName chattingPartner:_partnerUsername];
         
         ///////////////mai jos era : message in loc de encryptedMsgAsString
         
@@ -651,17 +663,6 @@
                 NSIndexPath *index = [NSIndexPath indexPathForRow:[self.chattingView.messages indexOfObject:preSendMessage] inSection:0];
                 [self.chattingView.chattingTableView beginUpdates];
                 if (preSendMessage != nil) {
-                    //DECRYPT - test
-                    /////
-//                    NSArray *elems = [preSendMessage.message componentsSeparatedByString:@";"];
-//                    NSDictionary *dict = @{
-//                                           kPCMessageAlphaValueKey: elems[0],
-//                                           kPCMessageBetaValueKey: elems[1]
-//                                           };
-//                    
-//                    
-//                    userMessage.message  = [[EncryptionManager sharedInstance] decryptText:dict];
-//                    //////
                     
                 [self.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:preSendMessage] withObject:userMessage];
                 }
@@ -678,19 +679,6 @@
         }];
         
         self.chattingView.preSendMessages[preSendMessage.requestId] = preSendMessage;
-        
-        //DECRYPT-TEST
-//        NSArray *elems = [preSendMessage.message componentsSeparatedByString:@";"];
-//        BigInteger *a = [[BigInteger alloc] initWithString:elems[0] radix:10];
-//        BigInteger *b = [[BigInteger alloc] initWithString:elems[1] radix:10];
-//        NSDictionary *dict = @{
-//                               kPCMessageAlphaValueKey: a,
-//                               kPCMessageBetaValueKey: b
-//                               };
-//        
-//        NSString *smth = [[EncryptionManager sharedInstance] decryptText:dict];
-//        
- //       preSendMessage.message  = smth;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (self.chattingView.preSendMessages[preSendMessage.requestId] == nil) {

@@ -282,12 +282,13 @@
                                kPCMessageBetaValueKey: finalB
                                };
         
-        
-        NSString *txt  = [[EncryptionManager sharedInstance] decryptText:dict];
+        NSString *partner = self.message.sender.nickname;
+        NSDictionary *keys = [[EncryptionManager sharedInstance] getMyKeysFromUserDefaultsForPartner:partner];
+        NSString *txt  = [[EncryptionManager sharedInstance] decryptText:dict usingKeys:keys];
         message = txt;
     }
     
-    
+    ///
     //NSString *message = self.message.message;
     
     NSMutableAttributedString *fullMessage = nil;

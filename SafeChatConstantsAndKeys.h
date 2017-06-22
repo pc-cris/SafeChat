@@ -18,6 +18,10 @@
 #define kSafeChatFirebaseRootUser                             @"users"
 #define kSafeChatFirebaseDefaultKeys                          @"defaultKeys"
 
+#define kSafeChatFirebasePrimeNumberKey                       @"primeNumber"
+#define kSafeChatFirebaseGeneratorKey                         @"generator"
+#define kSafeChatFirebaseGMultiplyingRuleKey                  @"multiplyingRule"
+
 
 @interface SafeChatConstantsAndKeys : NSObject
 

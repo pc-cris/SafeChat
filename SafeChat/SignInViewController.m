@@ -245,7 +245,7 @@
                 
                 [[NSUserDefaults standardUserDefaults] setObject:[SBDMain getCurrentUser].userId forKey:kSafeChatUserDefaultsUsernameKey];
                 [[NSUserDefaults standardUserDefaults] setObject:trimmedPassword forKey:kSafeChatUserDefaultsPasswordKey];
-                //[self setupKeysIfNecessary];
+                [self setupKeysIfNecessary];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     UserListViewController *vc = [[UserListViewController alloc] init];
@@ -260,12 +260,12 @@
 - (void)setupKeysIfNecessary {
     
     if(![[[NSUserDefaults standardUserDefaults]valueForKey:kSafeChatUserDefaultsDidSendInitialKeyToFirebaseKey] isEqualToString:@"sent"]) {
-        //NSDictionary *publicKeys = [[EncryptionManager sharedInstance] generateKeysUsePregenerated:YES];
+        NSDictionary *myDefaultKeys = [[EncryptionManager sharedInstance] testKeys];
         NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:kSafeChatUserDefaultsUsernameKey];
-        //BOOL didSend = [[EncryptionManager sharedInstance] setUserPublicKeys:publicKeys user:user];
-//        if (didSend) {
-//            [[NSUserDefaults standardUserDefaults] setObject:@"sent" forKey:kSafeChatUserDefaultsDidSendInitialKeyToFirebaseKey];
-//        }
+        BOOL didSend = [[EncryptionManager sharedInstance] setUserDefaultPublicKeys:myDefaultKeys user:user];
+        if (didSend) {
+            [[NSUserDefaults standardUserDefaults] setObject:@"sent" forKey:kSafeChatUserDefaultsDidSendInitialKeyToFirebaseKey];
+        }
     }
 }
 

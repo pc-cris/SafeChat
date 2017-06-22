@@ -28,9 +28,10 @@
 
 - (NSDictionary*)generateKeysUsePregenerated:(BOOL)usePregenerated;
 - (NSDictionary*)encryptText:(NSString*)text usingGeneratedKeys:(NSDictionary*)keys;
-- (NSString*)decryptText:(NSDictionary*)text;
+- (NSString*)decryptText:(NSDictionary*)text usingKeys:(NSDictionary*)keys;
 
 @property (nonatomic, strong) FIRDatabaseReference *reference;
+@property (nonatomic, copy, nullable)NSDictionary* (^firebaseBlock)(NSDictionary*);
 
 
 -(void)generateKeysForTest;

@@ -339,7 +339,7 @@ static NSString *primeNoLastDigits        = @"1379";
     return [self integerOne];
 }
 
-- (void)selectPrivateKeyAndSaveItToUserDefaults:(BigInteger*)primeNumber generator:(BigInteger*)generator {
+- (BigInteger*)selectPrivateKeyAndSaveItToUserDefaults:(BigInteger*)primeNumber generator:(BigInteger*)generator {
     
     BigInteger *privateKey; 
     BOOL isSmaller = NO;
@@ -350,9 +350,11 @@ static NSString *primeNoLastDigits        = @"1379";
         isPKLargeEnough = ([[generator exp:privateKey modulo:[self integerOne]] compare:primeNumber] == NSOrderedDescending);
     }
     
-    NSData *privateKeyData = [NSKeyedArchiver archivedDataWithRootObject:privateKey];
-    [[NSUserDefaults standardUserDefaults] setObject:privateKeyData forKey:kPCPrivateKeyNSUserDefaultsKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    return privateKey;
+    
+//    NSData *privateKeyData = [NSKeyedArchiver archivedDataWithRootObject:privateKey];
+//    [[NSUserDefaults standardUserDefaults] setObject:privateKeyData forKey:kPCPrivateKeyNSUserDefaultsKey];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
 
@@ -379,25 +381,27 @@ static NSString *primeNoLastDigits        = @"1379";
     }
     
     
-    //generate and save the private key
-    [self selectPrivateKeyAndSaveItToUserDefaults:key generator:generator];
+    //generate the private key
+    BigInteger *privateKey = [self selectPrivateKeyAndSaveItToUserDefaults:key generator:generator];
     
-    NSData *privateKeyData = [[NSUserDefaults standardUserDefaults] objectForKey:kPCPrivateKeyNSUserDefaultsKey];
-    BigInteger *privateKey = [NSKeyedUnarchiver unarchiveObjectWithData:privateKeyData];
+//    NSData *privateKeyData = [[NSUserDefaults standardUserDefaults] objectForKey:kPCPrivateKeyNSUserDefaultsKey];
+//    BigInteger *privateKey = [NSKeyedUnarchiver unarchiveObjectWithData:privateKeyData];
     
     BigInteger *thirdKey = [generator exp:privateKey modulo:key];
     
-    NSData *keyData =       [NSKeyedArchiver archivedDataWithRootObject:key];
-    NSData *generatorData = [NSKeyedArchiver archivedDataWithRootObject:generator];
-    NSData *thirdKeyData =  [NSKeyedArchiver archivedDataWithRootObject:thirdKey];
+//    NSData *keyData =       [NSKeyedArchiver archivedDataWithRootObject:key];
+//    NSData *generatorData = [NSKeyedArchiver archivedDataWithRootObject:generator];
+//    NSData *thirdKeyData =  [NSKeyedArchiver archivedDataWithRootObject:thirdKey];
+//    
+//    [[NSUserDefaults standardUserDefaults] setObject:keyData       forKey:kPCPublicKeyPrimeNumberKey];
+//    [[NSUserDefaults standardUserDefaults] setObject:generatorData forKey:kPCPublicKeyGeneratorKey];
+//    [[NSUserDefaults standardUserDefaults] setObject:thirdKeyData  forKey:kPCPublicKeyGMultiplyingRuleKey];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
     
-    [[NSUserDefaults standardUserDefaults] setObject:keyData       forKey:kPCPublicKeyPrimeNumberKey];
-    [[NSUserDefaults standardUserDefaults] setObject:generatorData forKey:kPCPublicKeyGeneratorKey];
-    [[NSUserDefaults standardUserDefaults] setObject:thirdKeyData  forKey:kPCPublicKeyGMultiplyingRuleKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    NSDictionary *publicKeys = @{ kPCPublicKeyPrimeNumberKey      : key,
-                                   kPCPublicKeyGeneratorKey         : generator,
+    NSDictionary *publicKeys = @{
+                                   kPCPrivateKeyNSUserDefaultsKey  : privateKey,
+                                   kPCPublicKeyPrimeNumberKey      : key,
+                                   kPCPublicKeyGeneratorKey        : generator,
                                    kPCPublicKeyGMultiplyingRuleKey : thirdKey
                                   };
     

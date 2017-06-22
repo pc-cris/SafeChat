@@ -224,6 +224,7 @@
 }
 
 - (NSAttributedString *)buildMessage {
+    
     NSDictionary *messageAttribute = @{
                                        NSFontAttributeName: [DesignConstants messageFont],
                                        NSForegroundColorAttributeName: [DesignConstants outgoingMessageColor],
@@ -232,8 +233,13 @@
     
     //NSString *message = self.message.message;
     NSString *message = [[NSUserDefaults standardUserDefaults] valueForKey:kSafeChatUserDefaultsLastMessageSent];
+    NSMutableAttributedString *fullMessage;
     
-    NSMutableAttributedString *fullMessage = [[NSMutableAttributedString alloc] initWithString:message];
+    if ([message length] != 0) {
+        fullMessage = [[NSMutableAttributedString alloc] initWithString:message];
+    } else {
+        fullMessage = [[NSMutableAttributedString alloc] initWithString:@"Invalid"];
+    }
     
     [fullMessage addAttributes:messageAttribute range:NSMakeRange(0, [message length])];
     

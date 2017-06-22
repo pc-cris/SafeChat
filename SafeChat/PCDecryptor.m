@@ -88,14 +88,30 @@ static dispatch_once_t once_token   = 0;
     return transformedMessage;
 }
 
-- (NSString*)decryptMessage:(NSDictionary*)message {
+- (NSString*)decryptMessage:(NSDictionary*)message withKeys:(NSDictionary*)keys {
     
     BigInteger *alpha = [message objectForKey:kPCMessageAlphaValueKey];
     BigInteger *beta =  [message objectForKey:kPCMessageBetaValueKey];
-    NSData *primeData =  [[NSUserDefaults standardUserDefaults] objectForKey:kPCPublicKeyPrimeNumberKey];
-    BigInteger *prime = [NSKeyedUnarchiver unarchiveObjectWithData:primeData];
-    NSData *privateKeyData = [[NSUserDefaults standardUserDefaults] objectForKey:kPCPrivateKeyNSUserDefaultsKey];
-    BigInteger *privateKey = [NSKeyedUnarchiver unarchiveObjectWithData:privateKeyData];
+    
+    //NSData *primeData =  [[NSUserDefaults standardUserDefaults] objectForKey:kPCPublicKeyPrimeNumberKey];
+    NSString *primeStr = [keys valueForKey:kPCPublicKeyPrimeNumberKey];
+    NSString *privateKeyStr = [keys valueForKey:kPCPrivateKeyNSUserDefaultsKey];
+    
+    
+    BigInteger *prime = [[BigInteger alloc] initWithString:primeStr radix:10];
+    //NSData *privateKeyData = [[NSUserDefaults standardUserDefaults] objectForKey:kPCPrivateKeyNSUserDefaultsKey];
+    BigInteger *privateKey = [[BigInteger alloc] initWithString:privateKeyStr radix:10];
+    
+    //TODO:
+    
+//    
+//    (lldb) po keys
+//    {
+//        "com.pc.safechat.kPCPrivateKeyNSUserDefaultsKey" = 362008909771623727288212548032952239534395259800083419916;
+//        "com.pc.safechat.kPCPublicKeyGMultiplyingRuleKey" = 27798465687732811764014863005962536388344562483507054993238327504860327962877040525147627927428627707065827163172661367152875187880952610230066501850572137;
+//        "com.pc.safechat.kPCPublicKeyGeneratorKey" = 2;
+//        "com.pc.safechat.kPCPublicKeyPrimeNumberKey" = 66853100275505147362599371325426178636949375166353934946040721080556341318514708808465558967444221878827459081686112246933519808328109817949203457716432893;
+//    }
     
     BigInteger *onePlusA = [privateKey add:[[BigInteger alloc] initWithString:@"1" radix:10]];
     BigInteger *pMinusOneMinusA = [[BigInteger alloc]init];

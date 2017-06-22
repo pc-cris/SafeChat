@@ -64,6 +64,7 @@ static dispatch_once_t once_token   = 0;
         return nil;
     }
     instance = self;
+    self.reference = [[FIRDatabase database] reference];
     return instance;
 }
 
@@ -73,9 +74,15 @@ static dispatch_once_t once_token   = 0;
 - (NSDictionary*)getReceiverPublicKeys:(NSString*)chattingPartner forUsername:(NSString*)user {
     
     __block NSDictionary *publicKeys = [NSDictionary new];
-    __block BOOL shouldGetDefaults = NO;
     //get them from Firebase db
     //TODO: Firebase
+    
+//    EncryptionManager *__weak weakSelf = self;
+//    self.firebaseBlock = ^NSDictionary *(NSDictionary * keys) {
+//        return [weakSelf transformStringDictionaryToBigIntegerDictionary:keys];
+//    };
+    
+    dispatch_semaphore_t firebaseSemaphore = dispatch_semaphore_create(0);
     
     [[[[self.reference child:kSafeChatFirebaseRootUser] child:chattingPartner] child:user] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
@@ -83,18 +90,31 @@ static dispatch_once_t once_token   = 0;
         publicKeys = dict;
         NSUInteger zero = 0;
         if(snapshot.childrenCount == zero) {
-            shouldGetDefaults = YES;
+            
+            [[[[self.reference child:kSafeChatFirebaseRootUser] child: chattingPartner] child:kSafeChatFirebaseDefaultKeys] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                
+                NSDictionary *dict = snapshot.value;
+                publicKeys = dict;
+                NSLog(@"%@",dict);
+                dispatch_semaphore_signal(firebaseSemaphore);
+                //self.firebaseBlock(dict);
+                
+            } withCancelBlock:^(NSError * _Nonnull error) {
+                NSLog(@"%@", error.localizedDescription);
+            }];
+        } else {
+            //self.firebaseBlock(dict);
+            dispatch_semaphore_signal(firebaseSemaphore);
+            
         }
         
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
     }];
     
-    if (shouldGetDefaults) {
-        return [self getReceiverDefaultKeys:chattingPartner];
-    }
+    dispatch_semaphore_wait(firebaseSemaphore, DISPATCH_TIME_FOREVER);
     
-    return  publicKeys;
+    return [self transformStringDictionaryToBigIntegerDictionary:publicKeys];
 }
 
 - (NSDictionary*)getReceiverDefaultKeys:(NSString*)chattingPartner {
@@ -112,7 +132,7 @@ static dispatch_once_t once_token   = 0;
         NSLog(@"%@", error.localizedDescription);
     }];
     
-    return publicKeys;
+    return [self transformStringDictionaryToBigIntegerDictionary:publicKeys];
 }
 
 - (NSDictionary*)getMyKeysFromUserDefaultsForPartner:(NSString*)partner {
@@ -133,9 +153,9 @@ static dispatch_once_t once_token   = 0;
     NSString *thirdKeyString  = [[keys valueForKey:kPCPublicKeyGMultiplyingRuleKey] toRadix:10];
     
     NSDictionary *stringDictionary = @{
-                                       kPCPublicKeyPrimeNumberKey: primeNoString,
-                                       kPCPublicKeyGeneratorKey: generatorString,
-                                       kPCPublicKeyGMultiplyingRuleKey: thirdKeyString
+                                       kSafeChatFirebasePrimeNumberKey: primeNoString,
+                                       kSafeChatFirebaseGeneratorKey: generatorString,
+                                       kSafeChatFirebaseGMultiplyingRuleKey: thirdKeyString
                                        };
     
     return stringDictionary;
@@ -143,9 +163,9 @@ static dispatch_once_t once_token   = 0;
 
 - (NSDictionary*)transformStringDictionaryToBigIntegerDictionary:(NSDictionary*)keys {
     
-    BigInteger *primeNo   = [[BigInteger alloc] initWithString:[keys valueForKey:kPCPublicKeyPrimeNumberKey] radix:10];
-    BigInteger *generator = [[BigInteger alloc] initWithString:[keys valueForKey:kPCPublicKeyGeneratorKey] radix:10];
-    BigInteger *thirdKey  = [[BigInteger alloc] initWithString:[keys valueForKey:kPCPublicKeyGMultiplyingRuleKey] radix:10];
+    BigInteger *primeNo   = [[BigInteger alloc] initWithString:[keys valueForKey:kSafeChatFirebasePrimeNumberKey] radix:10];
+    BigInteger *generator = [[BigInteger alloc] initWithString:[keys valueForKey:kSafeChatFirebaseGeneratorKey] radix:10];
+    BigInteger *thirdKey  = [[BigInteger alloc] initWithString:[keys valueForKey:kSafeChatFirebaseGMultiplyingRuleKey] radix:10];
     
     NSDictionary *bigIntegerDictionary = @{
                                            kPCPublicKeyPrimeNumberKey: primeNo,
@@ -169,9 +189,9 @@ static dispatch_once_t once_token   = 0;
     
     NSDictionary *userDefaultsDictionary = @{
                                              kPCPrivateKeyNSUserDefaultsKey: privateKeyString,
-                                             kPCPublicKeyPrimeNumberKey: [defaultKeys valueForKey:kPCPublicKeyPrimeNumberKey],
-                                             kPCPublicKeyGeneratorKey: [defaultKeys valueForKey:kPCPublicKeyGeneratorKey],
-                                             kPCPublicKeyGMultiplyingRuleKey: [defaultKeys valueForKey:kPCPublicKeyGMultiplyingRuleKey]
+                                             kPCPublicKeyPrimeNumberKey: [defaultKeys valueForKey:kSafeChatFirebasePrimeNumberKey],
+                                             kPCPublicKeyGeneratorKey: [defaultKeys valueForKey:kSafeChatFirebaseGeneratorKey],
+                                             kPCPublicKeyGMultiplyingRuleKey: [defaultKeys valueForKey:kSafeChatFirebaseGMultiplyingRuleKey]
                                              };
     
     [[NSUserDefaults standardUserDefaults] setObject:userDefaultsDictionary forKey:kSafeChatFirebaseDefaultKeys];
@@ -219,9 +239,9 @@ static dispatch_once_t once_token   = 0;
     return [[PCEncryptor sharedInstance] encryptMessage:text usingKeys:keys];
 }
 
-- (NSString*)decryptText:(NSDictionary*)text {
+- (NSString*)decryptText:(NSDictionary*)text usingKeys:(NSDictionary*)keys {
     
-    return [[PCDecryptor sharedInstance] decryptMessage:text];
+    return [[PCDecryptor sharedInstance] decryptMessage:text withKeys:keys];
 }
 
 //testing
