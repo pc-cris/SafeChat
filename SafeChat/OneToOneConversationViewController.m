@@ -49,6 +49,7 @@
 @property (atomic) BOOL cachedMessage;
 
 @property (nonatomic, strong) NSString *partnerUsername;
+@property (nonatomic, strong) FIRDatabaseReference *reference;
 
 @end
 
@@ -128,7 +129,13 @@
     self.isLoading = NO;
     
     [self.chattingView.fileAttachButton addTarget:self action:@selector(sendFileMessage) forControlEvents:UIControlEventTouchUpInside];
-    [self.chattingView.sendButton addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
+    
+    //TODO: firebase
+    self.reference = [[FIRDatabase database] reference];
+    
+//    [self.chattingView.sendButton addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.chattingView.sendButton addTarget:self action:@selector(getKeysAndSendMessage) forControlEvents:UIControlEventTouchUpInside];
     
     self.dumpedMessages = [Utils loadMessagesInChannel:self.channel.channelUrl];
 }
@@ -564,7 +571,34 @@
     });
 }
 
-- (void)sendMessage {
+//PCTODO: firebase
+
+- (void)getKeysAndSendMessage {
+    
+    NSString *myusername = [[NSUserDefaults standardUserDefaults] valueForKey:kSafeChatUserDefaultsUsernameKey];
+    
+    [[[self.reference child:kSafeChatFirebaseRootUser] child:_partnerUsername] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        NSDictionary *dict = snapshot.value;
+        NSString *dictValue;
+        
+        if ([[dict allKeys] containsObject:myusername]) {
+            dictValue = myusername;
+        } else {
+            dictValue = kSafeChatFirebaseDefaultKeys;
+        }
+        
+        NSDictionary *keysStr = [dict valueForKey:dictValue];
+        NSDictionary *keys = [[EncryptionManager sharedInstance]  transformStringDictionaryToBigIntegerDictionary:keysStr];
+        [self sendMessage:keys];
+        
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
+
+}
+
+- (void)sendMessage:(NSDictionary*)keys {
     
     if (self.chattingView.messageTextView.text.length > 0) {
         
@@ -630,9 +664,10 @@
         
         //TODO: test firebase get keys
         NSString *myName = [[NSUserDefaults standardUserDefaults] valueForKey:kSafeChatUserDefaultsUsernameKey];
-        NSDictionary *receiverKeys = [[EncryptionManager sharedInstance] getReceiverPublicKeys:_partnerUsername forUsername:myName];
         
-        NSDictionary *encrMsg = [[EncryptionManager sharedInstance] encryptText:message usingGeneratedKeys:receiverKeys];
+//        NSDictionary *receiverKeys = [[EncryptionManager sharedInstance] getReceiverPublicKeys:_partnerUsername forUsername:myName];
+        
+        NSDictionary *encrMsg = [[EncryptionManager sharedInstance] encryptText:message usingGeneratedKeys:keys];
         
         
         NSString *encryptedMsgAsString = [NSString stringWithFormat:@"%@;%@", [encrMsg valueForKey:kPCMessageAlphaValueKey], [encrMsg valueForKey:kPCMessageBetaValueKey]];

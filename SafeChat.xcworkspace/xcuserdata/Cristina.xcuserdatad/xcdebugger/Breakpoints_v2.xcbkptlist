@@ -207,7 +207,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "188"
             endingLineNumber = "188"
-            landmarkName = "-keyboardDidShow:"
+            landmarkName = "-viewWillDisappear:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -239,7 +239,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "239"
             endingLineNumber = "239"
-            landmarkName = "-loadPreviousMessage:"
+            landmarkName = "-openMoreMenu"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -278,7 +278,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ChattingView.m"
@@ -319,14 +319,14 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "592"
             endingLineNumber = "592"
-            landmarkName = "-sendMessage"
+            landmarkName = "-getKeysAndSendMessage"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SafeChat/OneToOneConversationViewController.m"
@@ -335,7 +335,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "636"
             endingLineNumber = "636"
-            landmarkName = "-sendMessage"
+            landmarkName = "-sendMessage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -351,8 +351,40 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "782"
             endingLineNumber = "782"
-            landmarkName = "-channel:didReceiveMessage:"
+            landmarkName = "-didSucceedReconnection"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__60-[OneToOneConversationViewController didSucceedReconnection]_block_invoke_2"
+                  moduleName = "SafeChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/OneToOneConversationViewController.m"
+                  timestampString = "519942878.855272"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "782"
+                  endingLineNumber = "782"
+                  offsetFromSymbolStart = "720">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__60-[OneToOneConversationViewController didSucceedReconnection]_block_invoke_3"
+                  moduleName = "SafeChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/OneToOneConversationViewController.m"
+                  timestampString = "519942878.856654"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "782"
+                  endingLineNumber = "782"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -367,7 +399,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "628"
             endingLineNumber = "628"
-            landmarkName = "-sendMessage"
+            landmarkName = "-sendMessage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -518,7 +550,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SafeChat/OneToOneConversationViewController.m"
@@ -527,7 +559,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "655"
             endingLineNumber = "655"
-            landmarkName = "-sendMessage"
+            landmarkName = "-sendMessage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -543,7 +575,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "701"
             endingLineNumber = "701"
-            landmarkName = "-sendMessage"
+            landmarkName = "-sendMessage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -559,7 +591,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "681"
             endingLineNumber = "681"
-            landmarkName = "-sendMessage"
+            landmarkName = "-sendMessage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -575,7 +607,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "629"
             endingLineNumber = "629"
-            landmarkName = "-sendMessage"
+            landmarkName = "-sendMessage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -591,7 +623,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "700"
             endingLineNumber = "700"
-            landmarkName = "-sendMessage"
+            landmarkName = "-sendMessage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -607,7 +639,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "686"
             endingLineNumber = "686"
-            landmarkName = "-sendMessage"
+            landmarkName = "-sendMessage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -623,8 +655,55 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "693"
             endingLineNumber = "693"
-            landmarkName = "-sendMessage"
+            landmarkName = "-sendMessage:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__50-[OneToOneConversationViewController sendMessage:]_block_invoke_3.687"
+                  moduleName = "SafeChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/OneToOneConversationViewController.m"
+                  timestampString = "519942878.863977"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "693"
+                  endingLineNumber = "693"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.688"
+                  moduleName = "SafeChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/OneToOneConversationViewController.m"
+                  timestampString = "519942878.865409"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "693"
+                  endingLineNumber = "693"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.689"
+                  moduleName = "SafeChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/OneToOneConversationViewController.m"
+                  timestampString = "519942878.866732"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "693"
+                  endingLineNumber = "693"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -639,8 +718,40 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "691"
             endingLineNumber = "691"
-            landmarkName = "-sendMessage"
+            landmarkName = "-sendMessage:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__50-[OneToOneConversationViewController sendMessage:]_block_invoke_2.686"
+                  moduleName = "SafeChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/OneToOneConversationViewController.m"
+                  timestampString = "519942878.872105"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "691"
+                  endingLineNumber = "691"
+                  offsetFromSymbolStart = "752">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__50-[OneToOneConversationViewController sendMessage:]_block_invoke_3.687"
+                  moduleName = "SafeChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/OneToOneConversationViewController.m"
+                  timestampString = "519942878.873579"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "691"
+                  endingLineNumber = "691"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -655,7 +766,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "641"
             endingLineNumber = "641"
-            landmarkName = "-sendMessage"
+            landmarkName = "-sendMessage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -671,7 +782,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "638"
             endingLineNumber = "638"
-            landmarkName = "-sendMessage"
+            landmarkName = "-sendMessage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -879,14 +990,14 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "589"
             endingLineNumber = "589"
-            landmarkName = "-sendMessage"
+            landmarkName = "-getKeysAndSendMessage"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SafeChat/OneToOneConversationViewController.m"
@@ -895,7 +1006,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "625"
             endingLineNumber = "625"
-            landmarkName = "-sendMessage"
+            landmarkName = "-sendMessage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -922,7 +1033,7 @@
                   moduleName = "SafeChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/EncryptionManager.m"
-                  timestampString = "519860364.504851"
+                  timestampString = "519942878.894222"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
@@ -937,7 +1048,7 @@
                   moduleName = "SafeChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/EncryptionManager.m"
-                  timestampString = "519860364.509204"
+                  timestampString = "519942878.895603"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
@@ -966,7 +1077,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SafeChat/EncryptionManager.m"
@@ -1002,7 +1113,7 @@
                   moduleName = "SafeChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/EncryptionManager.m"
-                  timestampString = "519860364.518298"
+                  timestampString = "519942878.906669"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "125"
@@ -1017,7 +1128,7 @@
                   moduleName = "SafeChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/EncryptionManager.m"
-                  timestampString = "519860364.519676"
+                  timestampString = "519942878.908032"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "125"

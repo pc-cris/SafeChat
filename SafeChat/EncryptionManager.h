@@ -20,8 +20,10 @@
 + (void)setSharedInstance:(EncryptionManager *)sharedInstance;
 + (void)resetSharedInstance;
 
-- (NSDictionary*)getReceiverPublicKeys:(NSString*)chattingPartner forUsername:(NSString*)user;
+//- (NSDictionary*)getReceiverPublicKeys:(NSString*)chattingPartner forUsername:(NSString*)user;
 - (NSDictionary*)getMyKeysFromUserDefaultsForPartner:(NSString*)partner;
+
+- (NSDictionary*)transformStringDictionaryToBigIntegerDictionary:(NSDictionary*)keys ;
 
 - (BOOL)setUserDefaultPublicKeys:(NSDictionary*)keys user:(NSString*)user;
 - (BOOL)setUserPublicKeys:(NSDictionary*)keys user:(NSString*)user chattingPartner:(NSString*)partner;

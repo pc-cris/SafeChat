@@ -213,9 +213,9 @@ static dispatch_once_t once_token   = 0;
     
     NSDictionary *userDefaultsDictionary = @{
                                              kPCPrivateKeyNSUserDefaultsKey: privateKeyString,
-                                             kPCPublicKeyPrimeNumberKey: [stringKeys valueForKey:kPCPublicKeyPrimeNumberKey],
-                                             kPCPublicKeyGeneratorKey: [stringKeys valueForKey:kPCPublicKeyGeneratorKey],
-                                             kPCPublicKeyGMultiplyingRuleKey: [stringKeys valueForKey:kPCPublicKeyGMultiplyingRuleKey]
+                                             kPCPublicKeyPrimeNumberKey: [stringKeys valueForKey:kSafeChatFirebasePrimeNumberKey],
+                                             kPCPublicKeyGeneratorKey: [stringKeys valueForKey:kSafeChatFirebaseGeneratorKey],
+                                             kPCPublicKeyGMultiplyingRuleKey: [stringKeys valueForKey:kSafeChatFirebaseGMultiplyingRuleKey]
                                              };
     
     [[NSUserDefaults standardUserDefaults] setObject:userDefaultsDictionary forKey:partner];
