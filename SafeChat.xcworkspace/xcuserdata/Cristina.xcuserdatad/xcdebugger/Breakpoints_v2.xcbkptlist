@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SafeChat/SignInViewController.m"
-            timestampString = "519600695.57364"
+            timestampString = "520016266.012083"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
             landmarkName = "-signInButtonAction:"
             landmarkType = "7">
          </BreakpointContent>
@@ -297,22 +297,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SafeChat/SignInViewController.m"
-            timestampString = "519600806.217983"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
-            landmarkName = "-signInButtonAction:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "SafeChat/OneToOneConversationViewController.m"
             timestampString = "519688183.067607"
             startingColumnNumber = "9223372036854775807"
@@ -346,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SafeChat/OneToOneConversationViewController.m"
-            timestampString = "519688744.23121"
+            timestampString = "520017184.877734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "782"
-            endingLineNumber = "782"
+            startingLineNumber = "791"
+            endingLineNumber = "791"
             landmarkName = "-didSucceedReconnection"
             landmarkType = "7">
             <Locations>
@@ -362,11 +346,11 @@
                   moduleName = "SafeChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/OneToOneConversationViewController.m"
-                  timestampString = "519942878.855272"
+                  timestampString = "520016266.239426"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "782"
-                  endingLineNumber = "782"
+                  startingLineNumber = "789"
+                  endingLineNumber = "789"
                   offsetFromSymbolStart = "720">
                </Location>
                <Location
@@ -377,11 +361,11 @@
                   moduleName = "SafeChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/OneToOneConversationViewController.m"
-                  timestampString = "519942878.856654"
+                  timestampString = "520016266.242099"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "782"
-                  endingLineNumber = "782"
+                  startingLineNumber = "789"
+                  endingLineNumber = "789"
                   offsetFromSymbolStart = "24">
                </Location>
             </Locations>
@@ -570,11 +554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SafeChat/OneToOneConversationViewController.m"
-            timestampString = "519688744.23121"
+            timestampString = "520017184.877734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "701"
-            endingLineNumber = "701"
+            startingLineNumber = "710"
+            endingLineNumber = "710"
             landmarkName = "-sendMessage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -586,11 +570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SafeChat/OneToOneConversationViewController.m"
-            timestampString = "519688744.23121"
+            timestampString = "520017184.877734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "681"
-            endingLineNumber = "681"
+            startingLineNumber = "690"
+            endingLineNumber = "690"
             landmarkName = "-sendMessage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -618,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SafeChat/OneToOneConversationViewController.m"
-            timestampString = "519688744.23121"
+            timestampString = "520017184.877734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "700"
-            endingLineNumber = "700"
+            startingLineNumber = "709"
+            endingLineNumber = "709"
             landmarkName = "-sendMessage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -634,11 +618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SafeChat/OneToOneConversationViewController.m"
-            timestampString = "519688744.23121"
+            timestampString = "520017184.877734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "686"
-            endingLineNumber = "686"
+            startingLineNumber = "695"
+            endingLineNumber = "695"
             landmarkName = "-sendMessage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -650,11 +634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SafeChat/OneToOneConversationViewController.m"
-            timestampString = "519688744.23121"
+            timestampString = "520017184.877734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "693"
-            endingLineNumber = "693"
+            startingLineNumber = "702"
+            endingLineNumber = "702"
             landmarkName = "-sendMessage:"
             landmarkType = "7">
             <Locations>
@@ -662,45 +646,45 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__50-[OneToOneConversationViewController sendMessage:]_block_invoke_3.687"
+                  symbolName = "__50-[OneToOneConversationViewController sendMessage:]_block_invoke_3.691"
                   moduleName = "SafeChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/OneToOneConversationViewController.m"
-                  timestampString = "519942878.863977"
+                  timestampString = "520016266.247812"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "693"
-                  endingLineNumber = "693"
+                  startingLineNumber = "700"
+                  endingLineNumber = "700"
                   offsetFromSymbolStart = "100">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_.688"
+                  symbolName = "__copy_helper_block_.692"
                   moduleName = "SafeChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/OneToOneConversationViewController.m"
-                  timestampString = "519942878.865409"
+                  timestampString = "520016266.251157"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "693"
-                  endingLineNumber = "693"
+                  startingLineNumber = "700"
+                  endingLineNumber = "700"
                   offsetFromSymbolStart = "64">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.689"
+                  symbolName = "__destroy_helper_block_.693"
                   moduleName = "SafeChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/OneToOneConversationViewController.m"
-                  timestampString = "519942878.866732"
+                  timestampString = "520016266.255894"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "693"
-                  endingLineNumber = "693"
+                  startingLineNumber = "700"
+                  endingLineNumber = "700"
                   offsetFromSymbolStart = "36">
                </Location>
             </Locations>
@@ -713,11 +697,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SafeChat/OneToOneConversationViewController.m"
-            timestampString = "519688744.23121"
+            timestampString = "520017184.877734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "691"
-            endingLineNumber = "691"
+            startingLineNumber = "700"
+            endingLineNumber = "700"
             landmarkName = "-sendMessage:"
             landmarkType = "7">
             <Locations>
@@ -725,30 +709,30 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__50-[OneToOneConversationViewController sendMessage:]_block_invoke_2.686"
+                  symbolName = "__50-[OneToOneConversationViewController sendMessage:]_block_invoke_2.690"
                   moduleName = "SafeChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/OneToOneConversationViewController.m"
-                  timestampString = "519942878.872105"
+                  timestampString = "520016266.260399"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "691"
-                  endingLineNumber = "691"
+                  startingLineNumber = "698"
+                  endingLineNumber = "698"
                   offsetFromSymbolStart = "752">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__50-[OneToOneConversationViewController sendMessage:]_block_invoke_3.687"
+                  symbolName = "__50-[OneToOneConversationViewController sendMessage:]_block_invoke_3.691"
                   moduleName = "SafeChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/OneToOneConversationViewController.m"
-                  timestampString = "519942878.873579"
+                  timestampString = "520016266.262003"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "691"
-                  endingLineNumber = "691"
+                  startingLineNumber = "698"
+                  endingLineNumber = "698"
                   offsetFromSymbolStart = "24">
                </Location>
             </Locations>
@@ -1033,7 +1017,7 @@
                   moduleName = "SafeChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/EncryptionManager.m"
-                  timestampString = "519942878.894222"
+                  timestampString = "520016266.287516"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
@@ -1048,7 +1032,7 @@
                   moduleName = "SafeChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/EncryptionManager.m"
-                  timestampString = "519942878.895603"
+                  timestampString = "520016266.289384"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
@@ -1113,7 +1097,7 @@
                   moduleName = "SafeChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/EncryptionManager.m"
-                  timestampString = "519942878.906669"
+                  timestampString = "520016266.295557"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "125"
@@ -1128,7 +1112,7 @@
                   moduleName = "SafeChat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Cristina/Desktop/SafeChat/SafeChat/EncryptionManager.m"
-                  timestampString = "519942878.908032"
+                  timestampString = "520016266.297761"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "125"
@@ -1167,6 +1151,38 @@
             startingLineNumber = "117"
             endingLineNumber = "117"
             landmarkName = "-getReceiverPublicKeys:forUsername:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SafeChat/SignInViewController.m"
+            timestampString = "520016213.193135"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
+            landmarkName = "-signInButtonAction:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SafeChat/SignInViewController.m"
+            timestampString = "520016239.224623"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
+            landmarkName = "-signInButtonAction:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

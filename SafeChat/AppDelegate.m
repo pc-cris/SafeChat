@@ -57,7 +57,7 @@
             NSLog(@"Set Audio Session error: %@", error);
         }
     }
-    [[EncryptionManager sharedInstance] generateKeysForTest];
+    //[[EncryptionManager sharedInstance] generateKeysForTest];
     
     return YES;
 }

@@ -36,7 +36,7 @@
 @property (nonatomic, copy, nullable)NSDictionary* (^firebaseBlock)(NSDictionary*);
 
 
--(void)generateKeysForTest;
-@property(nonatomic, strong)NSDictionary *testKeys;
-
+//-(void)generateKeysForTest;
+@property (nonatomic, strong) NSDictionary *testKeysUserOne;
+@property (nonatomic, strong) NSDictionary *testKeysUserTwo;
 @end

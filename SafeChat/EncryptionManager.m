@@ -253,19 +253,32 @@ static dispatch_once_t once_token   = 0;
     BigInteger *generatorKey = [[BigInteger alloc] initWithString:@"2" radix:10];
     BigInteger *thirdKey = [[BigInteger alloc] initWithString:@"27798465687732811764014863005962536388344562483507054993238327504860327962877040525147627927428627707065827163172661367152875187880952610230066501850572137" radix:10];
     
-    self.testKeys = @{
+    BigInteger *privateKey2 = [[BigInteger alloc] initWithString:@"77825348746734673676432423656328883464635645637264834823658654658736" radix:10];
+    BigInteger *primeNoKey2 = [[BigInteger alloc] initWithString:@"49692968912950770018208519992255398977900559548982780819965926004553666053631043137762676714635828112914291998027957524510229048130944976999118768461004859" radix:10];
+    BigInteger *generatorKey2 = [[BigInteger alloc] initWithString:@"2" radix:10];
+    BigInteger *thirdKey2 = [generatorKey2 exp:privateKey2 modulo:primeNoKey2];
+    
+    self.testKeysUserOne = @{
                       kPCPrivateKeyNSUserDefaultsKey:privateKey,
                       kPCPublicKeyPrimeNumberKey:primeNoKey,
                       kPCPublicKeyGeneratorKey:generatorKey,
                       kPCPublicKeyGMultiplyingRuleKey:thirdKey
                       };
     
-    NSData *privateKeyData = [NSKeyedArchiver archivedDataWithRootObject:privateKey];
-    [[NSUserDefaults standardUserDefaults] setObject:privateKeyData forKey:kPCPrivateKeyNSUserDefaultsKey];
+    self.testKeysUserTwo = @{
+                             kPCPrivateKeyNSUserDefaultsKey:privateKey2,
+                             kPCPublicKeyPrimeNumberKey: primeNoKey2,
+                             kPCPublicKeyGeneratorKey: generatorKey2,
+                             kPCPublicKeyGMultiplyingRuleKey: thirdKey2
+                             };
     
-    NSData *keyData =       [NSKeyedArchiver archivedDataWithRootObject:primeNoKey];
-    [[NSUserDefaults standardUserDefaults] setObject:keyData       forKey:kPCPublicKeyPrimeNumberKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+//    NSData *privateKeyData = [NSKeyedArchiver archivedDataWithRootObject:privateKey];
+//    [[NSUserDefaults standardUserDefaults] setObject:privateKeyData forKey:kPCPrivateKeyNSUserDefaultsKey];
+//    
+//    NSData *keyData =       [NSKeyedArchiver archivedDataWithRootObject:primeNoKey];
+//    [[NSUserDefaults standardUserDefaults] setObject:keyData       forKey:kPCPublicKeyPrimeNumberKey];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
     //            //NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:kSafeChatUserDefaultsUsernameKey];
     //BOOL didSend = [[EncryptionManager sharedInstance] setUserPublicKeys:publicKeys user:user];
     //if (didSend) {

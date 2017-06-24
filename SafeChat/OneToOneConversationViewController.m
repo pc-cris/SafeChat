@@ -672,7 +672,16 @@
         
         NSString *encryptedMsgAsString = [NSString stringWithFormat:@"%@;%@", [encrMsg valueForKey:kPCMessageAlphaValueKey], [encrMsg valueForKey:kPCMessageBetaValueKey]];
         
-        NSDictionary *myUpdatedKeys = [[EncryptionManager sharedInstance] testKeys];
+//        NSDictionary *keys;
+//        if ([[[NSUserDefaults standardUserDefaults] valueForKey:kSafeChatUserDefaultsUsernameKey] isEqualToString:@"test"]) {
+//            keys = [[EncryptionManager sharedInstance] testKeysUserOne];//TODO - try switching user 1 and 2
+//        } else {
+//            keys = [[EncryptionManager sharedInstance] testKeysUserTwo];
+//        }
+        
+        //TODO - generate new keys and send them
+        
+        NSDictionary *myUpdatedKeys = [[EncryptionManager sharedInstance] generateKeysUsePregenerated:YES];
         
         [[EncryptionManager sharedInstance] setUserPublicKeys:myUpdatedKeys user:myName chattingPartner:_partnerUsername];
         
