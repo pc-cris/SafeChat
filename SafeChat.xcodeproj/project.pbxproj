@@ -58,6 +58,7 @@
 		6B8FA40A1EF8754300CB4531 /* ConversationMemberInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B8FA4081EF8754300CB4531 /* ConversationMemberInformationViewController.xib */; };
 		6B8FA40E1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8FA40C1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.m */; };
 		6B8FA40F1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B8FA40D1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.xib */; };
+		6B8FA4121EFFC86F00CB4531 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8FA4111EFFC86F00CB4531 /* Reachability.m */; };
 		6BF2EAF21E2C20C300053FE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BF2EAF11E2C20C300053FE7 /* GoogleService-Info.plist */; };
 		6BF2EAF31E2C20C300053FE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BF2EAF11E2C20C300053FE7 /* GoogleService-Info.plist */; };
 		6BF541CD1EE88FD30016969E /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF541CB1EE88FD30016969E /* UserProfileViewController.m */; };
@@ -178,6 +179,8 @@
 		6B8FA40B1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationMemberInformationTableViewCell.h; sourceTree = "<group>"; };
 		6B8FA40C1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationMemberInformationTableViewCell.m; sourceTree = "<group>"; };
 		6B8FA40D1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConversationMemberInformationTableViewCell.xib; sourceTree = "<group>"; };
+		6B8FA4101EFFC84E00CB4531 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		6B8FA4111EFFC86F00CB4531 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		6BF2EAF11E2C20C300053FE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6BF541CA1EE88FD30016969E /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		6BF541CB1EE88FD30016969E /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
@@ -351,6 +354,8 @@
 		6BF541D11EEC613C0016969E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6B8FA4101EFFC84E00CB4531 /* Reachability.h */,
+				6B8FA4111EFFC86F00CB4531 /* Reachability.m */,
 				6B03B3CD1EB79A26004529FA /* Utils.h */,
 				6B03B3CE1EB79A26004529FA /* Utils.m */,
 				6B03B3BB1EB76CE1004529FA /* DesignConstants.h */,
@@ -674,6 +679,7 @@
 				6B8FA40E1EF8781A00CB4531 /* ConversationMemberInformationTableViewCell.m in Sources */,
 				6B0396A21EF54C7800F06994 /* PCDecryptor.m in Sources */,
 				5A4D89F51E9FC10700DA7953 /* OutgoingGeneralUrlPreviewTempModel.m in Sources */,
+				6B8FA4121EFFC86F00CB4531 /* Reachability.m in Sources */,
 				5A4D89FA1E9FC71B00DA7953 /* IncomingUserMessageTableViewCell.m in Sources */,
 				6B03969B1EF54C6800F06994 /* PCConstantsAndKeys.m in Sources */,
 				6B0396A31EF54C7800F06994 /* PCEncryptor.m in Sources */,

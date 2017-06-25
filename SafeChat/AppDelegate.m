@@ -10,13 +10,15 @@
 #import <SendBirdSDK/SendBirdSDK.h>
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
-
-//test
-#import "EncryptionManager.h"
+#import "Reachability.h"
 
 @import Firebase;
 
 @interface AppDelegate ()
+
+@property (nonatomic) Reachability *hostReachability;
+@property (nonatomic) Reachability *internetReachability;
+
 
 @end
 
@@ -44,7 +46,10 @@
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:42.0/255.0 green:172.0/255.0 blue:77.0/255.0 alpha:1.0]}];
     
-    [SBDMain initWithApplicationId:@"501B61B5-D7FA-4E33-BE3E-6D5F58C98367"];
+    //[SBDMain initWithApplicationId:@"501B61B5-D7FA-4E33-BE3E-6D5F58C98367"]; -> old id; expires 5th july
+    
+    [SBDMain initWithApplicationId:@"C3009943-A739-4022-A229-EB76CCF0D2E8"]; // -> new id; expires 19th July
+    
     [SBDMain setLogLevel:SBDLogLevelDebug];
     [FIRApp configure];
     
@@ -57,10 +62,70 @@
             NSLog(@"Set Audio Session error: %@", error);
         }
     }
-    //[[EncryptionManager sharedInstance] generateKeysForTest];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+    
+    //Change the host name here to change the server you want to monitor.
+    NSString *remoteHostName = @"www.apple.com";
+    
+    self.hostReachability = [Reachability reachabilityWithHostName:remoteHostName];
+    [self.hostReachability startNotifier];
+    
+    self.internetReachability = [Reachability reachabilityForInternetConnection];
+    [self.internetReachability startNotifier];
     
     return YES;
 }
+
+- (void) reachabilityChanged:(NSNotification *)note {
+    
+    Reachability* curReach = [note object];
+    NSParameterAssert([curReach isKindOfClass:[Reachability class]]);
+    [self checkInternetConnection:curReach];
+}
+
+- (void)checkInternetConnection:(Reachability*)reachability {
+    
+    NetworkStatus netStatus = [reachability currentReachabilityStatus];
+    BOOL connectionRequired = [reachability connectionRequired];
+    BOOL displayAlert = NO;
+    
+    switch (netStatus)
+    {
+        case NotReachable: {
+            displayAlert = YES;
+            break;
+        }
+            
+        case ReachableViaWWAN: {
+        case ReachableViaWiFi:
+            break;
+        }
+    }
+    
+    if (displayAlert) {
+        UIAlertController *alert = [UIAlertController
+                                    alertControllerWithTitle:@"No Internet"
+                                    message:@"In order to use this application, an Internet connection is required. Please connect your device either to a WiFi or a 4G network."
+                                    preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:@"OK"
+                                   style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                                   }];
+        
+        [alert addAction:okAction];
+        UIViewController *presenter = [[self window] rootViewController];
+        while ([presenter presentedViewController]) {
+            presenter = [presenter presentedViewController];
+        }
+        
+        [presenter presentViewController:alert animated:YES completion:^{
+        }];
+    }
+
+}
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
