@@ -272,12 +272,6 @@ static NSString *primeNoLastDigits        = @"1379";
 //    return YES;
 }
 
-//- (void)selectCyclicGroupOfOrderNAndGeneratorG {
-//    //PCTODO
-//    NSString *generator = [self findGeneratorG];
-//    
-//}
-
 - (NSArray*)primeFactorizationOfM:(BigInteger*)m {
     
     NSMutableArray *factors = [NSMutableArray new];
@@ -351,11 +345,6 @@ static NSString *primeNoLastDigits        = @"1379";
     }
     
     return privateKey;
-    
-//    NSData *privateKeyData = [NSKeyedArchiver archivedDataWithRootObject:privateKey];
-//    [[NSUserDefaults standardUserDefaults] setObject:privateKeyData forKey:kPCPrivateKeyNSUserDefaultsKey];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-    
 }
 
 - (NSDictionary*)computePublicKeysAndOperationInGOrUsePreGenerated:(BOOL)usePregenerated {
@@ -380,23 +369,10 @@ static NSString *primeNoLastDigits        = @"1379";
         generator = [[BigInteger alloc] initWithString:g radix:10] ;
     }
     
-    
     //generate the private key
     BigInteger *privateKey = [self selectPrivateKeyAndSaveItToUserDefaults:key generator:generator];
     
-//    NSData *privateKeyData = [[NSUserDefaults standardUserDefaults] objectForKey:kPCPrivateKeyNSUserDefaultsKey];
-//    BigInteger *privateKey = [NSKeyedUnarchiver unarchiveObjectWithData:privateKeyData];
-    
     BigInteger *thirdKey = [generator exp:privateKey modulo:key];
-    
-//    NSData *keyData =       [NSKeyedArchiver archivedDataWithRootObject:key];
-//    NSData *generatorData = [NSKeyedArchiver archivedDataWithRootObject:generator];
-//    NSData *thirdKeyData =  [NSKeyedArchiver archivedDataWithRootObject:thirdKey];
-//    
-//    [[NSUserDefaults standardUserDefaults] setObject:keyData       forKey:kPCPublicKeyPrimeNumberKey];
-//    [[NSUserDefaults standardUserDefaults] setObject:generatorData forKey:kPCPublicKeyGeneratorKey];
-//    [[NSUserDefaults standardUserDefaults] setObject:thirdKeyData  forKey:kPCPublicKeyGMultiplyingRuleKey];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
     
     NSDictionary *publicKeys = @{
                                    kPCPrivateKeyNSUserDefaultsKey  : privateKey,

@@ -231,8 +231,21 @@
                                        };
 
     
-    //NSString *message = self.message.message;
-    NSString *message = [[NSUserDefaults standardUserDefaults] valueForKey:kSafeChatUserDefaultsLastMessageSent];
+    //message caching ------------------------
+    
+    NSString *key = [NSString stringWithFormat:@"%@IDS", self.message.channelUrl];
+    NSString *key2 = [NSString stringWithFormat:@"%@MSGS", self.message.channelUrl];
+    
+    NSArray *ids = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    NSDictionary *msgs = [[NSUserDefaults standardUserDefaults] objectForKey:key2];
+    NSString *messageIdStr = [NSString stringWithFormat:@"%lld", self.message.messageId];
+    NSString *message = [msgs valueForKey:messageIdStr];
+    if (!message) {
+        message = [[NSUserDefaults standardUserDefaults] valueForKey:kSafeChatUserDefaultsLastMessageSent];
+    }
+    //end of message caching --------------------
+    
+    
     NSMutableAttributedString *fullMessage;
     
     if ([message length] != 0) {

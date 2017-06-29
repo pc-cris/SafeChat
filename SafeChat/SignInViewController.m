@@ -259,56 +259,50 @@
 
 - (IBAction)signInButtonAction:(id)sender {
     
+    [self signInUser];
         //TODO: check for existing username in Firebase:
     
-        NSString *savedUsername = [[NSUserDefaults standardUserDefaults] valueForKey:kSafeChatUserDefaultsUsernameKey];
-        if (![self.usernameTextField.text isEqualToString:savedUsername]) {
-    
-            FIRDatabaseReference *reference = [[FIRDatabase database] reference];
-            [[reference child:kSafeChatFirebaseRootUser] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-
-                NSDictionary *users = snapshot.value;
-                if ([[users allKeys] containsObject:self.usernameTextField.text]) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        //Your main thread code goes in here
-                        NSLog(@"Im on the main thread");
-                        UIAlertController *alertCtrl = [UIAlertController
-                                                        alertControllerWithTitle:@"User exists"
-                                                        message:@"This username already exists. Please pick another."
-                                                        preferredStyle:UIAlertControllerStyleAlert];
-                        UIAlertAction *okAction = [UIAlertAction
-                                                   actionWithTitle:@"OK"
-                                                   style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                                                   }];
-                        [alertCtrl addAction:okAction];
-                        [self presentViewController:alertCtrl animated:YES completion:^{
-                        }];
-                    });
-
-                } else {
-                    [self signInUser];
-                }
-                
-            } withCancelBlock:^(NSError * _Nonnull error) {
-                NSLog(@"%@", error.localizedDescription);
-            }];
-        } else {
-            [self signInUser];
-        }
+//        NSString *savedUsername = [[NSUserDefaults standardUserDefaults] valueForKey:kSafeChatUserDefaultsUsernameKey];
+//        if (![self.usernameTextField.text isEqualToString:savedUsername]) {
+//    
+//            FIRDatabaseReference *reference = [[FIRDatabase database] reference];
+//            [[reference child:kSafeChatFirebaseRootUser] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+//
+//                NSDictionary *users = snapshot.value;
+//                if ([[users allKeys] containsObject:self.usernameTextField.text]) {
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        //Your main thread code goes in here
+//                        NSLog(@"Im on the main thread");
+//                        UIAlertController *alertCtrl = [UIAlertController
+//                                                        alertControllerWithTitle:@"User exists"
+//                                                        message:@"This username already exists. Please pick another."
+//                                                        preferredStyle:UIAlertControllerStyleAlert];
+//                        UIAlertAction *okAction = [UIAlertAction
+//                                                   actionWithTitle:@"OK"
+//                                                   style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                                                   }];
+//                        [alertCtrl addAction:okAction];
+//                        [self presentViewController:alertCtrl animated:YES completion:^{
+//                        }];
+//                    });
+//
+//                } else {
+//                    [self signInUser];
+//                }
+//                
+//            } withCancelBlock:^(NSError * _Nonnull error) {
+//                NSLog(@"%@", error.localizedDescription);
+//            }];
+//        } else {
+//            [self signInUser];
+//        }
     
 }
             
 
 - (void)setupKeysIfNecessary {
-    
-//    NSDictionary *keys;
-//    if ([self.usernameTextField.text isEqualToString:@"test"]) {
-//        keys = [[EncryptionManager sharedInstance] testKeysUserOne];
-//    } else {
-//        keys = [[EncryptionManager sharedInstance] testKeysUserTwo];
-//    }
-    
-    if(![[[NSUserDefaults standardUserDefaults]valueForKey:kSafeChatUserDefaultsDidSendInitialKeyToFirebaseKey] isEqualToString:@"sent"]) {
+        
+    if(![[[NSUserDefaults standardUserDefaults] valueForKey:kSafeChatUserDefaultsDidSendInitialKeyToFirebaseKey] isEqualToString:@"sent"]) {
         NSDictionary *myDefaultKeys = [[EncryptionManager sharedInstance] generateKeysUsePregenerated:YES];
         NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:kSafeChatUserDefaultsUsernameKey];
         BOOL didSend = [[EncryptionManager sharedInstance] setUserDefaultPublicKeys:myDefaultKeys user:user];

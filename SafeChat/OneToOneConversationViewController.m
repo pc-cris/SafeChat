@@ -130,10 +130,7 @@
     
     [self.chattingView.fileAttachButton addTarget:self action:@selector(sendFileMessage) forControlEvents:UIControlEventTouchUpInside];
     
-    //TODO: firebase
     self.reference = [[FIRDatabase database] reference];
-    
-//    [self.chattingView.sendButton addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
     
     [self.chattingView.sendButton addTarget:self action:@selector(getKeysAndSendMessage) forControlEvents:UIControlEventTouchUpInside];
     
@@ -571,8 +568,8 @@
     });
 }
 
-//PCTODO: firebase
-
+#pragma mark -
+#pragma Firebase 
 - (void)getKeysAndSendMessage {
     
     NSString *myusername = [[NSUserDefaults standardUserDefaults] valueForKey:kSafeChatUserDefaultsUsernameKey];
@@ -653,46 +650,53 @@
             }
         }
         
-        
-        //TODO: TESSSTTT
-        
+        //set the last message sent
         [[NSUserDefaults standardUserDefaults] setObject:message forKey:kSafeChatUserDefaultsLastMessageSent];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        ///
         
-        //[[EncryptionManager sharedInstance] generateKeysForTest];
-        
-        //TODO: test firebase get keys
+        //get current username and encrypt message
         NSString *myName = [[NSUserDefaults standardUserDefaults] valueForKey:kSafeChatUserDefaultsUsernameKey];
-        
-//        NSDictionary *receiverKeys = [[EncryptionManager sharedInstance] getReceiverPublicKeys:_partnerUsername forUsername:myName];
-        
         NSDictionary *encrMsg = [[EncryptionManager sharedInstance] encryptText:message usingGeneratedKeys:keys];
-        
-        
         NSString *encryptedMsgAsString = [NSString stringWithFormat:@"%@;%@", [encrMsg valueForKey:kPCMessageAlphaValueKey], [encrMsg valueForKey:kPCMessageBetaValueKey]];
         
-//        NSDictionary *keys;
-//        if ([[[NSUserDefaults standardUserDefaults] valueForKey:kSafeChatUserDefaultsUsernameKey] isEqualToString:@"test"]) {
-//            keys = [[EncryptionManager sharedInstance] testKeysUserOne];//TODO - try switching user 1 and 2
-//        } else {
-//            keys = [[EncryptionManager sharedInstance] testKeysUserTwo];
-//        }
-        
-        //TODO - generate new keys and send them
-        
+        //regenerate keys so that the partner can send encrypted messages
         NSDictionary *myUpdatedKeys = [[EncryptionManager sharedInstance] generateKeysUsePregenerated:YES];
-        
         [[EncryptionManager sharedInstance] setUserPublicKeys:myUpdatedKeys user:myName chattingPartner:_partnerUsername];
         
-        ///////////////mai jos era : message in loc de encryptedMsgAsString
-        
         self.chattingView.sendButton.enabled = NO;
-        
         SBDUserMessage *preSendMessage = [self.channel sendUserMessage:encryptedMsgAsString data:@"" customType:@"" targetLanguages:@[@"ar", @"de", @"fr", @"nl", @"ja", @"ko", @"pt", @"es", @"zh-CHS"] completionHandler:^(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 SBDUserMessage *preSendMessage = (SBDUserMessage *)self.chattingView.preSendMessages[userMessage.requestId];
                 [self.chattingView.preSendMessages removeObjectForKey:userMessage.requestId];
+                
+                //message caching -----------------
+                NSString *key = [NSString stringWithFormat:@"%@IDS", userMessage.channelUrl];
+                NSArray *msgIds = [[NSUserDefaults standardUserDefaults] objectForKey: key];
+                if (!msgIds) {
+                    msgIds = [NSArray new];
+                }
+                NSString *msgIdStr = [NSString stringWithFormat:@"%lld", userMessage.messageId];
+                NSMutableArray *newIds = [NSMutableArray arrayWithArray:msgIds];
+                [newIds addObject:msgIdStr];
+                NSArray *immutableArray = [NSArray arrayWithArray:newIds];
+                
+                [[NSUserDefaults standardUserDefaults] setObject:immutableArray forKey:key];
+                
+                
+                NSString *key2 = [NSString stringWithFormat:@"%@MSGS", userMessage.channelUrl];
+                NSDictionary *msgs = [[NSUserDefaults standardUserDefaults] objectForKey:key2];
+                if(!msgs) {
+                    msgs = [NSMutableDictionary new];
+                }
+                NSString *lastMsg = [[NSUserDefaults standardUserDefaults] valueForKey:kSafeChatUserDefaultsLastMessageSent];
+                NSMutableDictionary *newMsgs = [NSMutableDictionary dictionaryWithDictionary:msgs];
+                [newMsgs setValue:lastMsg forKey:msgIdStr];
+                NSDictionary *immutableDictionary = [NSDictionary dictionaryWithDictionary:newMsgs];
+                
+                [[NSUserDefaults standardUserDefaults] setObject:immutableDictionary forKey:key2];
+                
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                //end of message caching ---------------
                 
                 if (error != nil) {
                     self.chattingView.resendableMessages[userMessage.requestId] = userMessage;
@@ -815,6 +819,24 @@
         
         
         [self.channel markAsRead];
+        
+        //message caching --------------------
+        
+        NSString *key = [NSString stringWithFormat:@"%@INIDS", message.channelUrl];
+        NSArray *msgIds = [[NSUserDefaults standardUserDefaults] objectForKey: key];
+        if (!msgIds) {
+            msgIds = [NSArray new];
+        }
+        NSString *msgIdStr = [NSString stringWithFormat:@"%lld", message.messageId];
+        NSMutableArray *newIds = [NSMutableArray arrayWithArray:msgIds];
+        [newIds addObject:msgIdStr];
+        NSArray *immutableArray = [NSArray arrayWithArray:newIds];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:immutableArray forKey:key];
+        
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        //end of message caching -------------------
         
         [self.chattingView.messages addObject:message];
         dispatch_async(dispatch_get_main_queue(), ^{

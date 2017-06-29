@@ -46,9 +46,9 @@
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:42.0/255.0 green:172.0/255.0 blue:77.0/255.0 alpha:1.0]}];
     
-    //[SBDMain initWithApplicationId:@"501B61B5-D7FA-4E33-BE3E-6D5F58C98367"]; -> old id; expires 5th july
+    [SBDMain initWithApplicationId:@"501B61B5-D7FA-4E33-BE3E-6D5F58C98367"]; //-> old id; expires 5th july
     
-    [SBDMain initWithApplicationId:@"C3009943-A739-4022-A229-EB76CCF0D2E8"]; // -> new id; expires 19th July
+    //[SBDMain initWithApplicationId:@"C3009943-A739-4022-A229-EB76CCF0D2E8"]; // -> new id; expires 19th July
     
     [SBDMain setLogLevel:SBDLogLevelDebug];
     [FIRApp configure];

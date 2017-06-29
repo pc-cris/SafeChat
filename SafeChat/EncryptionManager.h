@@ -20,7 +20,6 @@
 + (void)setSharedInstance:(EncryptionManager *)sharedInstance;
 + (void)resetSharedInstance;
 
-//- (NSDictionary*)getReceiverPublicKeys:(NSString*)chattingPartner forUsername:(NSString*)user;
 - (NSDictionary*)getMyKeysFromUserDefaultsForPartner:(NSString*)partner;
 
 - (NSDictionary*)transformStringDictionaryToBigIntegerDictionary:(NSDictionary*)keys ;
@@ -35,8 +34,4 @@
 @property (nonatomic, strong) FIRDatabaseReference *reference;
 @property (nonatomic, copy, nullable)NSDictionary* (^firebaseBlock)(NSDictionary*);
 
-
-//-(void)generateKeysForTest;
-@property (nonatomic, strong) NSDictionary *testKeysUserOne;
-@property (nonatomic, strong) NSDictionary *testKeysUserTwo;
 @end

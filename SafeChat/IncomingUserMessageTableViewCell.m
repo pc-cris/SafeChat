@@ -260,36 +260,81 @@
     
     NSString *nickname = self.message.sender.nickname;
     
-    
-    //TODO - must DECRYPT HERE (INCOMING MSGS) !!! IN ORDER TO SEE THEM
     NSString *message;
     
-    NSArray *elems = [self.message.message componentsSeparatedByString:@";"];
+    //CHECK IF MSG IS CACHED
+    NSString *key = [NSString stringWithFormat:@"%@INIDS", self.message.channelUrl];
+    NSString *key2 = [NSString stringWithFormat:@"%@INMSGS", self.message.channelUrl];
     
-    if ([elems count] != 2) {
-        message = @"Invalid";
-        
-    } else {
-        
-        NSString *nrOne = elems[0];
-        NSString *nrtwo = elems[1];
-        
-        BigInteger *finalA = [[BigInteger alloc] initWithString:nrOne radix:10];
-        BigInteger *finalB = [[BigInteger alloc] initWithString:nrtwo radix:10];
-        
-        NSDictionary *dict = @{
-                               kPCMessageAlphaValueKey: finalA,
-                               kPCMessageBetaValueKey: finalB
-                               };
-        
-        NSString *partner = self.message.sender.nickname;
-        NSDictionary *keys = [[EncryptionManager sharedInstance] getMyKeysFromUserDefaultsForPartner:partner];
-        NSString *txt  = [[EncryptionManager sharedInstance] decryptText:dict usingKeys:keys];
-        message = txt;
+    NSArray *ids = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    NSDictionary *msgs = [[NSUserDefaults standardUserDefaults] objectForKey:key2];
+    NSString *messageIdStr = [NSString stringWithFormat:@"%lld", self.message.messageId];
+    message = [msgs valueForKey:messageIdStr];
+    if (!message || [message length] == 0) {
+       
+        //IT'S PRLLY NEW MSG
+        NSArray *elems = [self.message.message componentsSeparatedByString:@";"];
+
+        if ([elems count] != 2) {
+            message = @"Invalid";
+            
+        } else {
+            
+            NSString *nrOne = elems[0];
+            NSString *nrtwo = elems[1];
+            
+            BigInteger *finalA = [[BigInteger alloc] initWithString:nrOne radix:10];
+            BigInteger *finalB = [[BigInteger alloc] initWithString:nrtwo radix:10];
+            
+            NSDictionary *dict = @{
+                                   kPCMessageAlphaValueKey: finalA,
+                                   kPCMessageBetaValueKey: finalB
+                                   };
+            
+            NSString *partner = self.message.sender.nickname;
+            NSDictionary *keys = [[EncryptionManager sharedInstance] getMyKeysFromUserDefaultsForPartner:partner];
+            NSString *txt  = [[EncryptionManager sharedInstance] decryptText:dict usingKeys:keys];
+            message = txt;
+            
+            //if the id was added, we need to also add the decryption to the dict in userdef
+            NSString *msgIdStr = [NSString stringWithFormat:@"%lld", self.message.messageId];
+            if([ids containsObject:msgIdStr]) {
+                NSDictionary *msgs = [[NSUserDefaults standardUserDefaults] objectForKey:key2];
+                if(!msgs) {
+                    msgs = [NSMutableDictionary new];
+                }
+                NSMutableDictionary *newMsgs = [NSMutableDictionary dictionaryWithDictionary:msgs];
+                [newMsgs setValue:txt forKey:msgIdStr];
+                NSDictionary *immutableDictionary = [NSDictionary dictionaryWithDictionary:newMsgs];
+                [[NSUserDefaults standardUserDefaults] setObject:immutableDictionary forKey:key2];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+            } else {
+                
+                //add the whole message - user received msg while offline prlly
+                NSArray *msgIds = [[NSUserDefaults standardUserDefaults] objectForKey: key];
+                if (!msgIds) {
+                    msgIds = [NSArray new];
+                }
+                NSString *msgIdStr = [NSString stringWithFormat:@"%lld", self.message.messageId];
+                NSMutableArray *newIds = [NSMutableArray arrayWithArray:msgIds];
+                [newIds addObject:msgIdStr];
+                NSArray *immutableArray = [NSArray arrayWithArray:newIds];
+                
+                [[NSUserDefaults standardUserDefaults] setObject:immutableArray forKey:key];
+                
+                NSDictionary *msgs = [[NSUserDefaults standardUserDefaults] objectForKey:key2];
+                if(!msgs) {
+                    msgs = [NSMutableDictionary new];
+                }
+                NSMutableDictionary *newMsgs = [NSMutableDictionary dictionaryWithDictionary:msgs];
+                [newMsgs setValue:txt forKey:msgIdStr];
+                NSDictionary *immutableDictionary = [NSDictionary dictionaryWithDictionary:newMsgs];
+                [[NSUserDefaults standardUserDefaults] setObject:immutableDictionary forKey:key2];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+            }
+        }
     }
     
-    ///
-    //NSString *message = self.message.message;
     
     NSMutableAttributedString *fullMessage = nil;
     if (self.displayNickname) {
